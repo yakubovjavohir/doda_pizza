@@ -1,55 +1,41 @@
-## Bu service vazifasi
+# Bu Service Vazifasi
 
-Bu service da telegram bot va autentifikatsiya dastur kodi yaratilgan.
+Bu servisda Telegram bot va autentifikatsiya uchun backend kodi yaratilgan.
 
+---
 
+## Telegram Bot Vazifasi
 
+Telegram botning vazifasi — foydalanuvchilarga (https://dodopizza.uz/) saytida ro'yxatdan o'tish imkoniyatini yaratishdir.
 
+### Qanday ishlaydi?
 
-## Telegram bot vazifasi 
+- Bot foydalanuvchiga 6 xonali maxfiy kod yaratadi va yuboradi.
+- Foydalanuvchi shu kodni saytga kiritadi.
+- Saytdan kelgan kod backend orqali tekshiriladi.
+- Agar kod to'g'ri kiritilgan bo‘lsa:
+  - Telegram raqam asosida foydalanuvchining shaxsiy profili yaratiladi.
 
-Telegram bot nima uchun yaratildi shuni korib otamiz. Botning vazifasi (https://dodopizza.uz/) saytidan ro'yxatdan otish uchun.
+### Xulosa
 
-Qanday ishlaydi?
+Telegram bot foydalanuvchilarning SMS orqali tez va xavfsiz autentifikatsiyasini ta'minlaydi, shaxsiy profil yaratadi va xizmatlarga qulay kirishni imkon qiladi.
 
-    Bot 6 xonali kod yaratadi va uni foydalanuvchi saytga kiritadi so'ngra u kod yana backandga qaytib keladi va tekshiruv boladi kodni tog'ri kirtsangiz telegram nomeringizga shaxsiy profile ochiladi.
+---
 
+## Autentifikatsiya Vazifasi
 
+Autentifikatsiya — bu foydalanuvchining kimligini tasdiqlash jarayonidir.  
+Ushbu jarayon orqali tizim foydalanuvchining haqiqiyligini tekshiradi va tizimga kirish huquqini beradi.
 
-Xulosa
+### Qanday ishlaydi?
 
-    Telegram bot foydalanuvchilarni SMS orqali tez va xavfsiz autentifikatsiya qiladi, profil yaratadi va tizimdagi xizmatlarga oson kirishni ta’minlaydi.
+- Foydalanuvchi Telegramdan yuborilgan 6 xonali kodni saytga kiritadi.
+- Backend kodni tekshiradi.
+- Agar kod to‘g‘ri bo‘lsa, server quyidagi javobni qaytaradi:
 
-
-
-## Autentifikatsiya vazifasi
-
-Autentifikatsiya — bu foydalanuvchining kimligini tasdiqlash jarayonidir. Ushbu jarayon yordamida tizim foydalanuvchining haqiqiyligini tekshiradi va unga tizimga kirish huquqini beradi.
-
-Qanday ishlaydi?
-
-    Foydalanuvchi kodni kirtganda va u tog'ri bolsa dastur avtomatik token yaratadi va frontend ga   
-    --------------------------------------------------------------------------------  
-      {
-        access: true yoki false   // agar kod (togri) bolsa true xato bolsa (false)
-        phone:telefon raqam,    // telgramdan raqam olinadi va qoshib jonatiladi
-        token: token       // token ham jonatiladi
-      }
-    --------------------------------------------------------------------------------
-
-    shu tarzda qaytaradi.
-    Token — bu foydalanuvchi tizimga kirganligini tasdiqlovchi maxfiy raqamlar ketma-ketligi. Har safar serverga so‘rov yuborilganda, token yuboriladi va server uni tekshiradi.
-
-
-Foydalanuvchi uchun qanday afzalliklar bor?
-
-    Telefon raqam orqali tez kirish — login va parol degan narsa shart bolmaydi.
-
-    1 marta kod kiritiladi, keyinchalik token orqali tizimda harakatlanadi.
-
-    Avtomatik profil yaratiladi, shunda foydalanuvchi o‘z ma'lumotlarini boshqarishi mumkin.
-
-
-Xulosa
-
-    Foydalanuvchi telgram raqami orqali tizimga kiradi kod bilan autentifikatsiyadan o‘tadi va token oladi. Token yordamida foydalanuvchi profilini boshqaradi va tizimdan qulay foydalanadi.
+```json
+{
+  "access": true,        // Kod to‘g‘ri bo‘lsa true, noto‘g‘ri bo‘lsa false
+  "phone": "+998901234567", // Telegramdan olingan foydalanuvchi raqami
+  "token": "eyJhbGciOi..."  // Autentifikatsiya tokeni
+}

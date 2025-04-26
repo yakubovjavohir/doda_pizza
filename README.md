@@ -10,4 +10,4 @@ Bu loyiha NestJS fremvorki grpc protokoli orqali yaratilgan backend.
 ## Maqsad
 Pizza buyurtmalarini boshqarish va yetkazib berishni avtomatlashtirish.
 
-## Qolgan malumotlar barcha servicelar ichida yozib otilgan.
+## Qolgan malumotlar barcha service ichidagi (article.md) fayl ichida yozib otilgan.
