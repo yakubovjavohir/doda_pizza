@@ -1,0 +1,2 @@
+export const BOT_SERVICE = "BOT_SERVICE"
+export const PROFILE_SERVICE = "PROFILE_SERVICE"

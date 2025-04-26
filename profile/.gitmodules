@@ -1,0 +1,6 @@
+[submodule "bot"]
+	path = bot
+	url = https://github.com/yakubovjavohir/doda_pizza
+[submodule "profile"]
+	path = profile
+	url = https://github.com/yakubovjavohir/doda_pizza
