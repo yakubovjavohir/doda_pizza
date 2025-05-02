@@ -1,10 +1,10 @@
-import { Controller, Body, Delete, Post, Patch, Param, UseGuards } from '@nestjs/common';
+import { Controller, Body, Delete, Post, Patch, Param, UseGuards, Get } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { RemovePhoneDto, UpdateBirthdayProfileDto, UpdateEmailProfileDto, UpdateNameProfileDto } from './dto/update-profile.dto';
+import { UpdateBirthdayProfileDto, UpdateEmailProfileDto, UpdateNameProfileDto } from './dto/update-profile.dto';
 import { JwtAuthGuard } from 'src/common/guard/jwt.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
-@Controller('profile')
+@Controller()
 export class ProfileController {
   constructor(
     private readonly profileService: ProfileService,
@@ -25,7 +25,6 @@ export class ProfileController {
   updateEmail(@Param('phone') phone: string, @Body() dto: UpdateEmailProfileDto) {
     return this.profileService.updateEmail(phone, dto.email);
   }
-  
 
   @Delete(':phone')
   remove(@Param('phone') phone: string,) {

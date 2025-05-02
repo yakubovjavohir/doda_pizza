@@ -10,6 +10,15 @@ export class ProfileService implements IProfileService{
     @Inject("IProfileRepository")
     private readonly profileRepository : ProfileRepository
   ){}
+  async findOne(phone: string): Promise<ResData<ProfileEntity | null>> {
+    const data = await this.profileRepository.findOne(phone)
+    if(!data){
+      return new ResData<null>(404, "phone not found", data)
+    }
+
+    const resdata = new ResData<ProfileEntity>(200, "success", data)
+    return resdata
+  }
   async create(dto: ProfileEntity): Promise<ResData<ProfileEntity>> {
     const findData = await this.profileRepository.findOne(dto.phone)
     

@@ -8,6 +8,11 @@ service ProfileService {
   rpc UpdateBirthday(UpdateBirthdayRequest) returns (ResData);
   rpc UpdateEmail(UpdateEmailRequest) returns (ResData);
   rpc Logaout(Delete) returns (Null);
+  rpc FindOne(ByPhone) returns (ResData);
+}
+
+message ByPhone {
+  string phone = 1;
 }
 
 message Delete {
@@ -38,6 +43,7 @@ message ProfileResponse {
   string phone = 3;
   string birthday = 4;
   string email = 5;
+  string bonuse = 6;
 }
 
 message Meta {

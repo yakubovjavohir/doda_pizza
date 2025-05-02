@@ -8,11 +8,11 @@ import { AuthService } from './auth.service';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'doda_token',  // Tokenda ishlatiladigan secret
-      signOptions: { expiresIn: '7d' }, // Token muddati
+      secret: process.env.TOKEN_KEY,  // Tokenda ishlatiladigan secret
+      signOptions: { expiresIn: '100y' }, // Token muddati
     }),
   ],
   providers: [AuthService, JwtStrategy],
-  exports: [AuthService], // Boshqa modullarda ishlata olamiz
+  exports: [AuthService],
 })
 export class AuthModule {}

@@ -1,5 +1,5 @@
 import { Controller, Inject } from '@nestjs/common';
-import { GrpcMethod, MessagePattern, Payload } from '@nestjs/microservices';
+import { GrpcMethod} from '@nestjs/microservices';
 import { BotService } from './bot.service';
 
 @Controller()

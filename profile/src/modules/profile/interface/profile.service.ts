@@ -7,4 +7,5 @@ export interface IProfileService {
     updateBirthday(dto:ProfileEntity):Promise<ResData<ProfileEntity>>
     updateEmail(dto:ProfileEntity):Promise<ResData<ProfileEntity>>
     logaut(phone:string):Promise<null>
+    findOne(phone:string):Promise<ResData<ProfileEntity | null>>
 }

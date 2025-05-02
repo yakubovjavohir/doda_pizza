@@ -3,7 +3,6 @@ import { BotService } from './bot.service';
 import { CreateBotDto } from './dto/create-bot.dto';
 import { ProfileService } from '../profile/profile.service';
 import { lastValueFrom } from 'rxjs';
-import { JwtAuthGuard } from 'src/common/guard/jwt.guard';
 
 @Controller('bot')
 export class BotController {

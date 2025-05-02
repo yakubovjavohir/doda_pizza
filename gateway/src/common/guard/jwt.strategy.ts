@@ -6,13 +6,13 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // Bearer token ichidan oladi
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), 
       ignoreExpiration: false,
-      secretOrKey: 'doda_token', // Tokenda ishlatiladigan secret
+      secretOrKey: process.env.TOKEN_KEY, 
     });
   }
 
   async validate(payload: any) {
-    return { phone: payload.phone }; // Payloadni ochib beradi
+    return { phone: payload.phone };
   }
 }

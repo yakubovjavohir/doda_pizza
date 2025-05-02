@@ -37,7 +37,7 @@ Ushbu jarayon orqali tizim foydalanuvchining haqiqiyligini tekshiradi va unga ti
 
 ```json
 {
-  "access": true,             // Agar kod to'g'ri bo'lsa true
+  "access": true,             // Agar kod to'g'ri bo'lsa true hato bolsa false
   "phone": "+998901234567",    // Telegramdan olingan foydalanuvchi telefon raqami
   "token": "eyJhbGciOiJIUzI1..." // Foydalanuvchiga yaratilgan token
 }

@@ -15,6 +15,11 @@ export class ProfileController {
     return this.profileService.create(dto);
   }
 
+  @GrpcMethod('ProfileService', 'FindOne')
+  findOne(dto:ProfileEntity){
+    return this.profileService.findOne(dto.phone)
+  }
+
   @GrpcMethod('ProfileService', 'UpdateName')
   updateName(dto:ProfileEntity) {
     return this.profileService.updateName(dto);

@@ -15,6 +15,11 @@ export class ProfileService {
   async create(phone:string){
    return this.profileService.Create({phone})
   }
+
+  findOne(phone:string){
+    return this.profileService.FindOne({phone})
+  }
+
   updateName(phone:string, name: string) {
     return this.profileService.UpdateName({
       phone,

@@ -1,0 +1,46 @@
+
+syntax = "proto3";
+
+package topping;
+
+service ToppingService {
+  rpc Create(CreateTopping) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+}
+
+message Void {}
+
+message PriceOption {
+  string sm = 1;
+  int32 price = 2;
+}
+
+message CreateTopping {
+  string name = 1;
+  repeated PriceOption prices = 2;
+  string imageUrl = 3;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 id = 1;
+  string name = 2;
+  repeated PriceOption prices = 3;
+  string imageUrl = 4;
+  string createAt = 5;
+  string updateAt = 6;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

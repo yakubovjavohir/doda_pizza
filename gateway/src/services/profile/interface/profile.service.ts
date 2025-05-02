@@ -6,6 +6,7 @@ export interface IProfileService {
     UpdateBirthday(UpdateBirthdayRequest:UpdateTypeBirthday):Observable<ResData>
     UpdateEmail(UpdateEmailRequest:UpdateTypeEmail):Observable<ResData>
     Logaout(phone:IPhone):Observable<Not>
+    FindOne(phone:IPhone):Observable<ResData>
 }
 
 
@@ -15,12 +16,13 @@ export interface IPhone{
 }
 
 export interface Data {
-    id:number,
-    name:string,
-    phone:string,
-    birthday:string,
-    email:string,
-    createAt:string,
+    id:number
+    name:string
+    phone:string
+    birthday:string
+    email:string
+    bonuse:string
+    createAt:string
     updateAt:string
 }
 export interface Meta {

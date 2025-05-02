@@ -18,6 +18,9 @@ export class ProfileEntity extends BaseEntity{
     @Column({type:String})
     email:String
 
+    @Column({type:String, default:0})
+    bonuse:string
+
     @CreateDateColumn()
     createAt:Date
 
