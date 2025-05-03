@@ -5,6 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'node:path';
+import { AllExceptionsFilter } from './lib/allExceptionFilter';
 
 async function bootstrap() {
 
@@ -16,6 +17,8 @@ async function bootstrap() {
       url:"localhost:7005"
     },
   });
+
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.listen()
   

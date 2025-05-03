@@ -2,13 +2,22 @@ import { Injectable } from '@nestjs/common';
 import { Bot } from 'grammy';
 import { codee } from '../lib/code';
 import { handleLogin } from 'src/common/jwt/token';
+import * as dotenv from 'dotenv';
+import { NotFoundToken } from './exceptions/bot.error';
+dotenv.config();
+
+
 @Injectable()
 export class BotService {
   private bot : Bot
   private botCode : number
   private phone : string
   constructor(){
-    this.bot = new Bot("8026870800:AAEZsH51MFzv-L763r9rjqkfQ97ajiucpRE")
+    const botToken = process.env.TeLEGRAM_BOT_TOKEN;
+    if (!botToken) {
+      throw new NotFoundToken()
+    }
+    this.bot = new Bot(botToken);
   }
   onModuleInit(){
     this.bot.start()

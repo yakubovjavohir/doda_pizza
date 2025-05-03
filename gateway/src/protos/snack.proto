@@ -1,0 +1,61 @@
+
+syntax = "proto3";
+
+package snack;
+
+service SnackService {
+  rpc Create(CreateSnack) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+}
+
+message Void {}
+
+message CreateSnack {
+  string name = 1;
+  string description = 2;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message SSB {
+    int32 id = 1;
+    string name = 2;
+    string gram = 3;
+    string price = 4;
+    string imageUrl = 5;
+    string createAt = 6;
+    string updateAt = 7;
+}
+
+message Pc {
+  int32 id = 1;
+  string pc = 2;
+  string gram = 3;
+  string imageUrl = 4;
+  string price = 5;
+  string createAt = 6;
+  string updateAt = 7;
+}
+
+message Data {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+    repeated SSB ssb = 4;
+    repeated Pc pcs = 5;
+  string createAt = 6;
+  string updateAt = 7;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}
