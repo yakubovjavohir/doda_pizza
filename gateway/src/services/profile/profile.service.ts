@@ -12,33 +12,33 @@ export class ProfileService {
   onModuleInit() {
     this.profileService = this.client.getService<IProfileService>('ProfileService');
   }
-  async create(phone:string){
-   return this.profileService.Create({phone})
+  async create(email:string){
+   return this.profileService.Create({email})
   }
 
-  findOne(phone:string){
-    return this.profileService.FindOne({phone})
+  findOne(email:string){
+    return this.profileService.FindOne({email})
   }
 
-  updateName(phone:string, name: string) {
+  updateName(email:string, name: string) {
     return this.profileService.UpdateName({
-      phone,
+      email,
       name
     })
   }
-  updateBirthday(phone:string, birthday: string) {
+  updateBirthday(email:string, birthday: string) {
     return this.profileService.UpdateBirthday({
-      phone,
+      email,
       birthday
     })
   }
-  updateEmail(phone:string, email: string) {
+  updateEmail(email:string, phone: string) {
     return this.profileService.UpdateEmail({
-      phone,
-      email
+      email,
+      phone
     })
   }
-  remove(phone:string) {
-    return this.profileService.Logaout({phone})
+  remove(email:string) {
+    return this.profileService.Logaout({email})
   }
 }

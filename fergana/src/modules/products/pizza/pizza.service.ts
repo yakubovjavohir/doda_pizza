@@ -4,13 +4,14 @@ import { ID } from 'src/common/types';
 import { ResData } from 'src/lib/resdata';
 import { PizzaEntity } from './entities/pizza.entity';
 import { PizzaRepository } from './pizza.repository';
-import { NameExist, NotFoundPizza } from './exceptions/pizza.error';
+import { NameExist, NotFoundProduct } from 'src/lib/allModule.errors';
 
 @Injectable()
 export class PizzaService implements IPizzaService{
   @Inject("IPizzaRepository")
   private readonly pizzaRepository:PizzaRepository
   async create(dto: PizzaEntity): Promise<ResData<PizzaEntity>> {
+    
     const nameExsit = await this.pizzaRepository.nameExsit(dto.name)
     if(nameExsit){
       throw new NameExist()
@@ -28,7 +29,7 @@ export class PizzaService implements IPizzaService{
   async findOne(id: ID): Promise<ResData<PizzaEntity>> {
     const data = await this.pizzaRepository.findOne(id)
     if(!data){
-      throw new NotFoundPizza()
+      throw new NotFoundProduct()
     }
     const resdata = new ResData<PizzaEntity>(200, "success", data)
     return resdata

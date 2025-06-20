@@ -7,35 +7,31 @@ service ProfileService {
   rpc UpdateName(UpdateNameRequest) returns (ResData);
   rpc UpdateBirthday(UpdateBirthdayRequest) returns (ResData);
   rpc UpdateEmail(UpdateEmailRequest) returns (ResData);
-  rpc Logaout(Delete) returns (Null);
-  rpc FindOne(ByPhone) returns (ResData);
+  rpc Logaout(ByEmail) returns (Null);
+  rpc FindOne(ByEmail) returns (ResData);
 }
 
-message ByPhone {
-  string phone = 1;
-}
-
-message Delete {
-    string phone = 1;
+message ByEmail {
+  string email = 1;
 }
 
 message CreateRequest {
-    string phone = 1;
+    string email = 1;
 }
 
 message UpdateNameRequest {
-  string phone = 1;
+  string email = 1;
   string name = 2;
 }
 
 message UpdateBirthdayRequest {
-  string phone = 1;
+  string email = 1;
   string birthday = 2; 
 }
 
 message UpdateEmailRequest {
-  string phone = 1;
-  string email = 2;
+  string email = 1;
+  string phone = 2;
 }
 
 message ProfileResponse {

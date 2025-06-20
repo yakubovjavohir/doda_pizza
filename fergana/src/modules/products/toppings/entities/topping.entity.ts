@@ -1,25 +1,29 @@
 import { ID } from "src/common/types";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IToppingPrices } from "../interface/prices";
+import { PricesEntity } from "../../mini-data/prices/entities/price.entity";
 
 @Entity("topping")
-export class ToppingEntity extends BaseEntity{
+export class ToppingEntity{
     @PrimaryGeneratedColumn()
     id:ID
 
     @Column({type:String})
     name: string;
-  
-    @Column('jsonb', { default: [] })
-    prices: IToppingPrices[];
-  
+    
     @Column({ nullable: true })
     imageUrl: string;
+    
+    @OneToMany(() => PricesEntity, (prices) => prices.topping)
+    prices: PricesEntity[];  
+
+    @Column()
+    type:string
 
     @CreateDateColumn()
     createAt:Date
 
     @UpdateDateColumn()
     updateAt:Date
-  toppingEntity: IToppingPrices;
+    toppingEntity: IToppingPrices;
 }

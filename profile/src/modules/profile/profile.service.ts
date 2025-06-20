@@ -10,8 +10,8 @@ export class ProfileService implements IProfileService{
     @Inject("IProfileRepository")
     private readonly profileRepository : ProfileRepository
   ){}
-  async findOne(phone: string): Promise<ResData<ProfileEntity | null>> {
-    const data = await this.profileRepository.findOne(phone)
+  async findOne(email: string): Promise<ResData<ProfileEntity | null>> {
+    const data = await this.profileRepository.findOne(email)
     if(!data){
       return new ResData<null>(404, "phone not found", data)
     }
@@ -20,7 +20,7 @@ export class ProfileService implements IProfileService{
     return resdata
   }
   async create(dto: ProfileEntity): Promise<ResData<ProfileEntity>> {
-    const findData = await this.profileRepository.findOne(dto.phone)
+      const findData = await this.profileRepository.findOne(dto.email as string)
     
     if(findData){
       const resdata = new ResData<ProfileEntity>(200, "exist profile ", findData)
@@ -29,9 +29,9 @@ export class ProfileService implements IProfileService{
     const data = new ProfileEntity();
     data.id = Number();
     data.name = "";
-    data.phone = dto.phone;
+    data.phone = "";
     data.birthday = "";
-    data.email = "";
+    data.email = dto.email;
     data.createAt = new Date();
     data.updateAt = new Date();
     
@@ -40,21 +40,21 @@ export class ProfileService implements IProfileService{
     return resdata
   }
   async updateName(dto: ProfileEntity): Promise<ResData<ProfileEntity>> {
-    const data = await this.profileRepository.updateName(dto.phone, dto.name)
+    const data = await this.profileRepository.updateName(dto.email as string, dto.name)
     const resdata = new ResData<ProfileEntity>(200, "updated name", data)
     return resdata
   }
   async updateBirthday(dto: ProfileEntity): Promise<ResData<ProfileEntity>> {
-    const data = await this.profileRepository.updateBirthday(dto.phone, dto.birthday)
+    const data = await this.profileRepository.updateBirthday(dto.email as string, dto.birthday)
     const resdata = new ResData<ProfileEntity>(200, "updated birthday", data)
     return resdata
   }
   async updateEmail(dto: ProfileEntity): Promise<ResData<ProfileEntity>> {
-    const data = await this.profileRepository.updateEmail(dto.phone, dto.email as string)
+    const data = await this.profileRepository.updateEmail(dto.email as string, dto.phone as string)
     const resdata = new ResData<ProfileEntity>(200, "updated email", data)
     return resdata
   }
-  async logaut(phone: string): Promise<null> {
-    return await this.profileRepository.logaut(phone)
+  async logaut(email: string): Promise<null> {
+    return await this.profileRepository.logaut(email)
   }
 }

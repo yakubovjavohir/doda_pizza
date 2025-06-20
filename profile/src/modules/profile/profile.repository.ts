@@ -8,10 +8,10 @@ export class ProfileRepository implements IProfileRepository {
         @InjectRepository(ProfileEntity)
         private readonly profile:Repository<ProfileEntity>
     ){}    
-    async findOne(phone: string): Promise<ProfileEntity | null> {
+    async findOne(email: string): Promise<ProfileEntity | null> {
         const data = await this.profile.findOne({
             where:{
-                phone
+                email
             }
         })
         return data
@@ -20,36 +20,36 @@ export class ProfileRepository implements IProfileRepository {
         const data = this.profile.create({...dto})
         return await this.profile.save(data)
     }
-    async updateName(phone: string, name: string): Promise<ProfileEntity | null> {
-        await this.profile.update({phone}, {name})
+    async updateName(email: string, name: string): Promise<ProfileEntity | null> {
+        await this.profile.update({email}, {name})
         return await this.profile.findOne({
             where:{
-                phone
+                email
             }
         })
     }
-    async updateBirthday(phone: string, birthday: string): Promise<ProfileEntity | null> {
-        await this.profile.update({phone}, {birthday})
+    async updateBirthday(email: string, birthday: string): Promise<ProfileEntity | null> {
+        await this.profile.update({email}, {birthday})
         return await this.profile.findOne({
             where:{
-                phone
+                email
             }
         })
     }
-    async updateEmail(phone: string, email: string): Promise<ProfileEntity | null> {
-        await this.profile.update({phone}, {email})
+    async updateEmail(email: string, phone: string): Promise<ProfileEntity | null> {
+        await this.profile.update({email}, {phone})
         return await this.profile.findOne({
             where:{
-                phone
+                email
             }
         })
     }
-    async logaut(phone: string): Promise<null> {
+    async logaut(email: string): Promise<null> {
         await this.profile
         .createQueryBuilder()
         .delete()
         .from(ProfileEntity)
-        .where('phone = :phone', { phone })
+        .where('email = :email', { email })
         .execute();
         return null
     }

@@ -1,18 +1,18 @@
 import { Observable } from "rxjs";
 
 export interface IProfileService {
-    Create(phone:IPhone):Observable<ResData>
+    Create(email:IEmail):Observable<ResData>
     UpdateName(UpdateNameRequest:UpdateTypeName):Observable<ResData> 
     UpdateBirthday(UpdateBirthdayRequest:UpdateTypeBirthday):Observable<ResData>
     UpdateEmail(UpdateEmailRequest:UpdateTypeEmail):Observable<ResData>
-    Logaout(phone:IPhone):Observable<Not>
-    FindOne(phone:IPhone):Observable<ResData>
+    Logaout(email:IEmail):Observable<Not>
+    FindOne(email:IEmail):Observable<ResData>
 }
 
 
 
-export interface IPhone{
-    phone:string
+export interface IEmail{
+    email:string
 }
 
 export interface Data {
@@ -34,16 +34,16 @@ export interface ResData {
     data:Data
 }
 export interface UpdateTypeName {
-    phone:string,
+    email:string,
     name:string
 }
 export interface UpdateTypeBirthday {
-    phone:string,
+    email:string,
     birthday:string
 }
 export interface UpdateTypeEmail {
-    phone:string,
     email:string
+    phone:string,
 }
 
 export interface Not {}

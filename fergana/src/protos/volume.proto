@@ -1,0 +1,52 @@
+
+syntax = "proto3";
+
+package volume;
+
+service VolumesService {
+  rpc Create(CreateVolumes) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindOne(ById) returns (ResData);
+}
+
+message ById {
+  int32 id = 1;
+}
+
+message Void {}
+
+message CreateVolumes {
+  string size = 1;
+  int32 weight = 2;
+  string imageUrl = 3;
+  int32 price = 4;
+  int32 product = 5;
+  string type = 6;
+}
+
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  string size = 1;
+  int32 weight = 2;
+  string imageUrl = 3;
+  int32 price = 4;
+  int32 product = 5;
+  string type = 6;
+  string createAt = 7;
+  string updateAt = 8;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

@@ -8,7 +8,7 @@ import { promises as fs } from 'fs';
 import { extname, join } from 'path';
 const uploadPath = join(process.cwd(), 'uploads', 'pizza');
 
-@Controller('pizza')
+@Controller('fergana/pizza')
 export class PizzaController {
   imageUrl: string[] = [];
   constructor(private readonly pizzaService: PizzaService) {}
@@ -42,16 +42,22 @@ export class PizzaController {
   }
   @Post()
   create(@Body() dto: CreatePizzaDto) {
-    for (let i = 0; i < this.imageUrl.length; i++) {
-      dto.imageUrl[i].imageUrl = this.imageUrl[i]
+    const changeData = {
+      name:dto.name,
+      description:dto.description,
+      fixedprice:dto.fixed__price,
+      disavailabletoppings: dto.dis_available_toppings?.map(String) || [],
+      vegetarian:dto.vegetarian || false,
+      pepper:dto.pepper || false,
+      imageUrl:dto.imageUrl,
+      price: dto.price,
+      topping:dto.topping
     }
-    this.imageUrl = []
-    return this.pizzaService.create(dto);
+    return this.pizzaService.create(changeData);
   }
 
   @Get()
   findAll() {
-    console.log('1');
     return this.pizzaService.findAll();
   }
 

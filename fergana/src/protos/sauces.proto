@@ -1,0 +1,61 @@
+
+syntax = "proto3";
+
+package sauces;
+
+service SaucesService {
+  rpc Create(CreateSauces) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindById(ById) returns (ResData);
+  rpc Delete(ById) returns (ResData);
+}
+
+message Void {}
+
+message ById {
+  int32 id = 1;
+}
+
+message CreateSauces {
+  string name = 1;
+  string description = 2;
+  int32 price = 3;
+  string imageUrl = 4;
+  int32 fixedprice = 5;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Volume {
+  int32 id = 1;
+  string size = 2;
+  int32 weight = 3;
+  string imageUrl = 4;
+  int32 price = 5;
+  string createAt = 6;
+  string type = 7;
+}
+
+message Data {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  repeated Volume volume = 4;
+  int32 price = 5;
+  string imageUrl = 6;
+  int32 fixedprice = 7;
+  string createAt = 8;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

@@ -13,5 +13,8 @@ import { PizzaRepository } from './pizza.repository';
     {provide:"IPizzaRepository", useClass:PizzaRepository},
     {provide:"IPizzaService", useClass:PizzaService},
   ],
+  exports:[
+    {provide:"IPizzaService", useClass:PizzaService}
+  ]
 })
 export class PizzaModule {}

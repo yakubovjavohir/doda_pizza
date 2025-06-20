@@ -1,3 +1,4 @@
+import { ID } from "src/common/types";
 import { SnackEntity } from "./entities/snack.entity";
 import { ISnacksRepository } from "./interface/snacks.repository";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -8,6 +9,13 @@ export class SnacksRepository implements ISnacksRepository {
         @InjectRepository(SnackEntity)
         private readonly snacksRepository: Repository<SnackEntity>,
     ){}
+    async findOne(id: ID): Promise<SnackEntity | null> {
+        const data = await this.snacksRepository.findOne({
+            where:{id},
+            relations:['volume']
+        })
+        return data
+    }
     async nameExist(name: string): Promise<SnackEntity | null> {
         const data = await this.snacksRepository.findOne({
             where:{name}
@@ -21,7 +29,7 @@ export class SnacksRepository implements ISnacksRepository {
     }
     async findAll(): Promise<SnackEntity[]> {
         const data = await this.snacksRepository.find({
-            relations:['ssb', 'pcs']
+            relations:['volume']
         });
         return data;
     }

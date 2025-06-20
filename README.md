@@ -3,7 +3,6 @@
 Bu loyiha NestJS fremvorki grpc protokoli orqali yaratilgan backend.
 
 ## Asosiy Serviclar:
-- Bot servisi
 - Gateway servisi
 - Profile servisi
 

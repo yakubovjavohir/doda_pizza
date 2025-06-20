@@ -1,0 +1,64 @@
+
+syntax = "proto3";
+
+package tt;
+
+service TTService {
+  rpc Create(CreateTT) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindOne(ById) returns (ResData);
+}
+
+message ById {
+  int32 id = 1;
+}
+
+message Void {}
+
+message CreateTT {
+  string size = 1;
+  int32 sm = 2;
+  int32 weight = 3;
+  int32 price = 4;
+  int32 pizza = 5;
+  string imageUrl = 6;
+}
+
+message Fact {
+  int32 id = 1;
+  int32 calories = 2;
+  int32 protein = 3;
+  int32 fat = 4;
+  int32 carbohydrate = 5;
+  int32 tt = 6;
+  string createAt = 7;
+  string updateAt = 8;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 id = 1;
+  string size = 2;
+  int32 sm = 3;
+  int32 weight = 4;
+  int32 price = 5;
+  int32 pizza = 6;
+  repeated Fact facts = 7;
+  string imageUrl = 8;
+  string createAt = 9;
+  string updateAt = 10;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

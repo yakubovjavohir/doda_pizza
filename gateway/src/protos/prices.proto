@@ -1,0 +1,46 @@
+
+syntax = "proto3";
+
+package prices;
+
+service PricesService {
+  rpc Create(CreatePrices) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindOne(ById) returns (ResData);
+}
+
+message Void {}
+
+message ById {
+  int32 id = 1;
+}
+
+message CreatePrices {
+  string size = 1;
+  int32 price = 2;
+  int32 topping = 3;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 id = 1;
+  string size = 2;
+  int32 price = 3;
+  int32 topping = 4;
+  string createAt = 5;
+  string updateAt = 6;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

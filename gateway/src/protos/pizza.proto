@@ -16,32 +16,36 @@ message ById {
     int32 id = 1;
 }
 
-message IImageOption {
-    string type = 1;
-    string imageUrl = 2;
-    string sm = 3;
-}
-
-message PriceOption {
-  string sm = 1;
-  int32 price = 2;
-}
-
-
-message IToppingOPtion {
+message Fact {
   int32 id = 1;
-  string name = 2;
-  repeated PriceOption prices = 3;
-  string imageUrl = 4;
-  string createAt = 5;
-  string updateAt = 6;
+  int32 calories = 2;
+  int32 protein = 3;
+  int32 fat = 4;
+  int32 carbohydrate = 5;
+}
+
+message ITTOption {
+  int32 id = 1;
+  string size = 2;
+  int32 weight = 3;
+  int32 sm = 4;
+  int32 price = 5;
+  string imageUrl = 6;
+  repeated Fact facts = 7;
+  string createAt = 8;
+  string updateAt = 9;
 }
 
 message CreatePizza {
   string name = 1;
   string description = 2;
-  string price = 3;
-  repeated IImageOption imageUrl = 4;
+  int32 price = 3;
+  string imageUrl = 4;
+  int32 fixedprice = 5;
+  repeated string disavailabletoppings = 6;
+  bool vegetarian = 7;
+  bool pepper = 8;
+  repeated int32 topping = 9;
 }
 
 message IMeta {
@@ -53,11 +57,16 @@ message Data {
   int32 id = 1;
   string name = 2;
   string description = 3;
-  string price = 4;
-  repeated IToppingOPtion toppings = 5;
-  repeated IImageOption imageUrl = 6;
-  string createAt = 7;
-  string updateAt = 8;
+  int32 price = 4;
+  string imageUrl = 5;
+  int32 fixedprice = 6;
+  repeated string disavailabletoppings = 7;
+  bool vegetarian = 8;
+  bool pepper = 9;
+  repeated ITTOption variants = 10;
+  repeated int32 topping = 11;
+  string createAt = 12;
+  string updateAt = 13;
 }
 
 message ResDataList {

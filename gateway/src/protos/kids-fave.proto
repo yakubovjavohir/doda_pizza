@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package kidsfave;
+
+service KidsFaveService {
+  rpc Create(CreateKidsFave) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindById(ById) returns (ResData);
+  rpc Delete(ById) returns (ResData);
+}
+
+message Void {}
+
+message ById {
+  int32 id = 1;
+}
+
+message CreateKidsFave {
+  string type = 1;
+  int32 product = 2;
+  bool spicy = 3;
+  bool kidsFriendly = 4;
+  int32 recommendedAge = 5;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 id = 1;
+  string type = 2;
+  int32 product = 3;
+  bool spicy = 4;
+  bool kidsFriendly = 5;
+  int32 recommendedAge = 6;
+  string createAt = 7;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+} 

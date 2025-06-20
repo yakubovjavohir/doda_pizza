@@ -1,18 +1,11 @@
 import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from '../../common/guard/jwt.strategy';
 import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [
-    PassportModule,
-    JwtModule.register({
-      secret: process.env.TOKEN_KEY,  // Tokenda ishlatiladigan secret
-      signOptions: { expiresIn: '100y' }, // Token muddati
-    }),
-  ],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
+  imports:[HttpModule],
+  controllers: [AuthController],
+  providers: [AuthService],
 })
 export class AuthModule {}

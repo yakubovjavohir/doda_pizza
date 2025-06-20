@@ -27,7 +27,7 @@ app.useGlobalPipes(
   }),
 );
 app.enableCors({
-  origin: 'http://localhost:5174',
+  origin: 'http://localhost:4000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
 }); 

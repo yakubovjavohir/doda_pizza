@@ -21,14 +21,17 @@ export class PizzaRepository implements IPizzaRepository {
         return await this.pizza.save(data)
     }
     async findAll(): Promise<Array<PizzaEntity>> {
-        const data = await this.pizza.find()
+        const data = await this.pizza.find({
+            relations:['tt', 'tt.facts']
+        })
         return data
     }
     async findOne(id: ID): Promise<PizzaEntity | null> {
         const data = await this.pizza.findOne({
             where:{
                 id
-            }
+            },
+            relations:['tt', 'tt.facts']
         })
         return data
     }

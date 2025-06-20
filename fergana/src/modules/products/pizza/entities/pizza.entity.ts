@@ -1,28 +1,44 @@
 import { ID } from "src/common/types";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { IImageOption } from "../interface/pizza";
 import { ToppingEntity } from "../../toppings/entities/topping.entity";
+import { TTEntity } from "../../mini-data/t-t/entities/t-t.entity";
 
 
 @Entity('pizza')
-export class PizzaEntity extends BaseEntity{
+export class PizzaEntity{
     @PrimaryGeneratedColumn()
     id:ID
 
-    @Column({type:String})
+    @Column({type:String, nullable:false})
     name:string
 
-    @Column({type:String})
-    price:string
+    @Column({type: 'decimal', default:null, nullable:true})
+    price:number | null
 
-    @Column({type:String})
+    @Column({type:String, nullable:false})
     description:string
 
-    @Column('jsonb', { default: [] })
-    toppings:ToppingEntity[]
+    @Column({ default: null, type: 'decimal',  name:'fixed__price', nullable:true})
+    fixedprice: number | null;
 
-    @Column('jsonb', { default: [] })
+    @Column({ default: false, nullable:true })
+    vegetarian: boolean;
+
+    @Column("text", { array: true, name:'dis_available_toppings', default:[], nullable:true})
+    disavailabletoppings: string[];
+
+    @Column({ default: false, nullable:true })
+    pepper: boolean;
+    
+    @Column('jsonb', { default: [], nullable:false })
     imageUrl:IImageOption[]
+
+    @Column({type: 'jsonb', default: [], nullable:true})  
+    topping: ToppingEntity[];
+
+    @OneToMany(() => TTEntity, (tt) => tt.pizza)
+    tt: TTEntity[];
 
     @CreateDateColumn()
     createAt:Date

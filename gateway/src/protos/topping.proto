@@ -6,19 +6,28 @@ package topping;
 service ToppingService {
   rpc Create(CreateTopping) returns (ResData);
   rpc FindAll(Void) returns (ResDataList);
+  rpc FindOne(ById) returns (ResData);
+}
+
+message ById {
+  int32 id = 1;
 }
 
 message Void {}
 
 message PriceOption {
-  string sm = 1;
-  int32 price = 2;
+    int32 id = 1;
+    string size = 2;
+    int32 prices = 3;
+    int32 topping = 4;
+    string createAt = 5;
+    string updateAt = 6;
 }
 
 message CreateTopping {
   string name = 1;
-  repeated PriceOption prices = 2;
-  string imageUrl = 3;
+  string imageUrl = 2;
+  string type = 3;
 }
 
 message IMeta {
@@ -30,9 +39,10 @@ message Data {
   int32 id = 1;
   string name = 2;
   repeated PriceOption prices = 3;
-  string imageUrl = 4;
-  string createAt = 5;
-  string updateAt = 6;
+  string type = 4;
+  string imageUrl = 5;
+  string createAt = 6;
+  string updateAt = 7;
 }
 
 message ResData {

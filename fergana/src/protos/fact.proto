@@ -1,0 +1,50 @@
+
+syntax = "proto3";
+
+package fact;
+
+service FactService {
+  rpc Create(CreateFact) returns (ResData);
+  rpc FindAll(Void) returns (ResDataList);
+  rpc FindOne(ById) returns (ResData);
+}
+
+message ById {
+    int32 id = 1;
+}
+
+message Void {}
+
+message CreateFact {
+  int32 calories = 1;
+  int32 protein = 2;
+  int32 fat = 3;
+  int32 carbohydrate = 4;
+  int32 tt = 5;
+}
+
+message IMeta {
+  int32 statusCode = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 id = 1;
+  int32 calories = 2;
+  int32 protein = 3;
+  int32 fat = 4;
+  int32 carbohydrate = 5;
+  int32 tt = 6;
+  string createAt = 7;
+  string updateAt = 8;
+}
+
+message ResData {
+  IMeta meta = 1;
+  Data data = 2;
+}
+
+message ResDataList {
+  IMeta meta = 1;
+  repeated Data data = 2;
+}

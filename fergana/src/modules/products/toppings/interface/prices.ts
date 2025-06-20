@@ -1,4 +1,4 @@
 export interface IToppingPrices {
-    sm:string,
+    size:string,
     price:string
 }

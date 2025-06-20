@@ -1,28 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
-import { SSBEntity } from '../ssb/entities/ssb.entity';
-import { PcEntity } from '../pc/entities/pc.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, BaseEntity } from 'typeorm';
 import { ID } from 'src/common/types';
+import { VolumesEntity } from '../../mini-data/volumes/entities/volume.entity';
 
 @Entity('snacks')
-export class SnackEntity {
+export class SnackEntity{
   @PrimaryGeneratedColumn()
   id: ID;
 
   @Column()
   name: string;
 
-  @Column({ nullable: true })
+  @Column()
   description: string;
 
-  @OneToMany(() => SSBEntity, (ssb) => ssb.snack)
-  ssb: SSBEntity[];
-  
-  @OneToMany(() => PcEntity, (pcs) => pcs.snack)
-  pcs: PcEntity[];
+  @Column({ default: null, type: 'decimal',  name:'fixed__price', nullable:true})
+  fixedprice: number | null;
+
+  @Column({ default: false, nullable:true })
+  vegetarian: boolean;
+
+  @Column("text", { array: true, name:'dis_available_toppings', default:[], nullable:true})
+  disavailabletoppings: string[];
+
+  @Column({ default: false, nullable:true })
+  pepper: boolean;
+
+  @Column({type:String})
+  imageUrl:string
+
+  @Column({type: 'decimal', default:null, nullable:true})
+  price:number | null
+
+  @OneToMany(() => VolumesEntity, (volume) => volume.snack)
+  volume: VolumesEntity[];
 
   @CreateDateColumn()
-    createAt: Date;
-
-    @CreateDateColumn()
-    updateAt: Date;
+  createAt: Date;
 }

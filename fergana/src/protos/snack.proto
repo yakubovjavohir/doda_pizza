@@ -6,13 +6,22 @@ package snack;
 service SnackService {
   rpc Create(CreateSnack) returns (ResData);
   rpc FindAll(Void) returns (ResDataList);
+  rpc FindById(ById) returns (ResData);
 }
-
+message ById {
+  int32 id = 1;
+}
 message Void {}
 
 message CreateSnack {
   string name = 1;
   string description = 2;
+  int32 fixedprice = 3;
+  bool vegetarian = 4;
+  repeated string disavailabletoppings = 5;
+  bool pepper = 6;
+  int32 price = 7;
+  string imageUrl = 8;
 }
 
 message IMeta {
@@ -20,34 +29,29 @@ message IMeta {
   string message = 2;
 }
 
-message SSB {
-    int32 id = 1;
-    string name = 2;
-    string gram = 3;
-    string price = 4;
-    string imageUrl = 5;
-    string createAt = 6;
-    string updateAt = 7;
-}
-
-message Pc {
+message Volume {
   int32 id = 1;
-  string pc = 2;
-  string gram = 3;
+  string size = 2;
+  int32 weight = 3;
   string imageUrl = 4;
-  string price = 5;
+  int32 price = 5;
   string createAt = 6;
-  string updateAt = 7;
+  string type = 7;
+  int32 product = 8;
 }
 
 message Data {
   int32 id = 1;
   string name = 2;
   string description = 3;
-    repeated SSB ssb = 4;
-    repeated Pc pcs = 5;
-  string createAt = 6;
-  string updateAt = 7;
+  int32 fixedprice = 4;
+  bool vegetarian = 5;
+  repeated string disavailabletoppings = 6;
+  bool pepper = 7;
+  int32 price = 8;
+  string imageUrl = 9;
+  repeated Volume volume = 10;
+  string createAt = 11;
 }
 
 message ResData {

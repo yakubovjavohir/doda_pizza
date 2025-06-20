@@ -1,13 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { ArrayMinSize, IsArray, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
-class Price {
-    @ApiProperty()
-    sm: string;
-  
-    @ApiProperty()
-    price: string;
-}
 
 export class CreateToppingDto {
     @ApiProperty()
@@ -15,13 +8,13 @@ export class CreateToppingDto {
     @IsNotEmpty()
     name:string
 
-    @ApiProperty({ type: [Price] })
-    @IsNotEmpty()
-    @IsArray()
-    @ArrayMinSize(3, { message: 'There must be at least 3 prices' })
-    prices:Price[]
-
+    @ApiProperty()
     @IsString()
     @IsOptional()
     imageUrl:string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    type:string
 }

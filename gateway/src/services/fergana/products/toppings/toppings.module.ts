@@ -21,5 +21,6 @@ import { join } from 'node:path';
   ],
   controllers: [ToppingsController],
   providers: [ToppingsService],
+  exports:[ToppingsService]
 })
 export class ToppingsModule {}

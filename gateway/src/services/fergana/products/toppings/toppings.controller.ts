@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UploadedFile, UseInterceptors, Get } from '@nestjs/common';
+import { Controller, Post, Body, UploadedFile, UseInterceptors, Get, Param } from '@nestjs/common';
 import { ToppingsService } from './toppings.service';
 import { CreateToppingDto } from './dto/create-topping.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -6,6 +6,7 @@ import { extname } from 'node:path';
 import { diskStorage } from 'multer';
 import { join } from 'node:path';
 import { promises as fs } from 'fs';
+import { ID } from 'src/common/TYPES';
 
 const uploadPath = join(process.cwd(), 'uploads', 'toppings');
 @Controller('toppings')
@@ -52,5 +53,10 @@ export class ToppingsController {
   @Get()
   findAll() {
     return this.toppingsService.findAll();
+  }
+
+  @Get(":id")
+  findOne(@Param('id') id:ID){
+    return this.toppingsService.findOne(id)
   }
 }

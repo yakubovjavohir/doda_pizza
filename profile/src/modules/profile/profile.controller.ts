@@ -17,7 +17,7 @@ export class ProfileController {
 
   @GrpcMethod('ProfileService', 'FindOne')
   findOne(dto:ProfileEntity){
-    return this.profileService.findOne(dto.phone)
+    return this.profileService.findOne(dto.email as string)
   }
 
   @GrpcMethod('ProfileService', 'UpdateName')
@@ -37,6 +37,6 @@ export class ProfileController {
 
   @GrpcMethod('ProfileService', "Logaout")
   remove(dto:ProfileEntity) {
-    return this.profileService.logaut(dto.phone);
+    return this.profileService.logaut(dto.email as string);
   }
 }
