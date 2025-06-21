@@ -18,6 +18,8 @@ export class CoffeeController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    console.log(10);
+    
     return this.coffeeService.findOne(+id);
   }
 
