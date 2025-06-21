@@ -6,4 +6,4 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 23032006yj
-      POSTGRES_DB: doda_pizza_backand
+      POSTGRES_DB: dodo_pizza_base
