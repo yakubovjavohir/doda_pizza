@@ -13,7 +13,7 @@ import { DrinksService } from './drinks.service';
           options: {
             package: 'drink',
             protoPath: join(__dirname, '../../../../protos/drink.proto'),
-            url:"localhost:7004"
+            url:"fergana:7004"
           },
         },
       ]),],

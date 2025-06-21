@@ -13,7 +13,7 @@ import { PRODUCT_SERVICE_SNACKS_MODULE } from 'src/common/config/service.name';
           options: {
             package: 'snack',
             protoPath: join(__dirname, '../../../../protos/snack.proto'),
-            url:"localhost:7004"
+            url:"fergana:7004"
           },
         },
       ])],

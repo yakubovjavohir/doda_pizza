@@ -14,7 +14,7 @@ import { FactService } from './fact.service';
             options: {
               package: 'fact',
               protoPath: join(__dirname, '../../../../../protos/fact.proto'),
-              url:"localhost:7004"
+              url:"fergana:7004"
             },
           },
         ])

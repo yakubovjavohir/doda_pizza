@@ -15,7 +15,7 @@ import { ToppingsModule } from '../toppings/toppings.module';
         options: {
           package: 'pizza',
           protoPath: join(__dirname, '../../../../protos/pizza.proto'),
-          url:"localhost:7004"
+          url:"fergana:7004"
         },
       },
     ]),

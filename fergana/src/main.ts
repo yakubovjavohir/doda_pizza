@@ -28,7 +28,7 @@ async function bootstrap() {
         join(__dirname, './protos/breakfast.proto'),
         join(__dirname, './protos/kids-fave.proto')
       ],
-      url:"localhost:7004"
+      url:"fergana:7004"
     },
   });
   app.useGlobalFilters(new AllExceptionsFilter());
