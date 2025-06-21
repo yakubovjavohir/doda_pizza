@@ -110,7 +110,8 @@ return {
   
       allData.push(pizzaData);
     }
-  
+    console.log(allData);
+    
     return {
       meta: result.meta,
       data: allData,
