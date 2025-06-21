@@ -1,34 +1,18 @@
 services:
-  db:
-    image: postgres:14
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 23032006yj
-      POSTGRES_DB: dodo_pizza_base
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   gateway:
     build: ./gateway
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - order
+      - fergana
 
   order:
     build: ./order
     ports:
       - "7003:7003"
-    depends_on:
-      - db
 
   fergana:
     build: ./fergana
     ports:
       - "7004:7004"
-    depends_on:
-      - db
-
-volumes:
-  postgres_data:
