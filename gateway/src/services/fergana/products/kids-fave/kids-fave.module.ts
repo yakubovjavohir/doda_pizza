@@ -13,6 +13,7 @@ import { KidsFaveService } from './kids-fave.service';
           options: {
             package: 'kidsfave',
             protoPath: join(__dirname, '../../../../protos/kids-fave.proto'),
+            // url:"localhost:7004",
             url:"fergana:7004"
           },
         },

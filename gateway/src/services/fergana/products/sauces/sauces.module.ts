@@ -13,6 +13,7 @@ import { SaucesService } from './sauces.service';
           options: {
             package: 'sauces',
             protoPath: join(__dirname, '../../../../protos/sauces.proto'),
+            // url:"localhost:7004",
             url:"fergana:7004"
           },
         },

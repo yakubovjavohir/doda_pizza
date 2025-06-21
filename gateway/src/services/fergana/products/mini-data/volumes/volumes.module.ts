@@ -16,7 +16,8 @@ import { IdValidationModule } from '../../id-validation/id-validation.module';
             options: {
               package: 'volume',
               protoPath: join(__dirname, '../../../../../protos/volume.proto'),
-              url:"fergana:7004"
+              // url:"localhost:7004",
+            url:"fergana:7004"
             },
           },
         ]),

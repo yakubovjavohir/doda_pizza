@@ -14,7 +14,8 @@ import { join } from 'node:path';
         options: {
           package: 'topping',
           protoPath: join(__dirname, '../../../../protos/topping.proto'),
-          url:"fergana:7004"
+          // url:"localhost:7004",
+            url:"fergana:7004"
         },
       },
     ]),

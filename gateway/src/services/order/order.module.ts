@@ -16,7 +16,8 @@ import { IdValidationModule } from '../fergana/products/id-validation/id-validat
         options: {
           package: 'order',
           protoPath: join(__dirname, '../../protos/order.proto'),
-          url:"order:7003"
+          // url:"localhost:7003",
+            url:"order:7003"
         },
       },
     ]),

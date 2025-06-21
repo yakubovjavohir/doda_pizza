@@ -26,8 +26,6 @@ export class MenuController {
     
 
     if(pizzas.data.length > 0){
-      console.log(1);
-      
       pizzas.data.forEach((el) => {
         data.push({
           ...el,
@@ -39,8 +37,6 @@ export class MenuController {
     const snacks = await this.snacksService.findAll();
     
     if(snacks.data.length > 0){
-      console.log(2);
-      
       snacks.data.forEach((el) => {
         data.push({
           ...el,
@@ -104,7 +100,6 @@ export class MenuController {
       });
     }
 
-    console.log('this is menu data', data);
     
 
     return {
