@@ -57,6 +57,8 @@ export class CoffeeController {
 
   @GrpcMethod('CoffeeService', 'FindAll')
   async findAll() {
+    console.log("salomla");
+    
     const data = await this.coffeeService.findAll();
     return {
       meta:data.meta,
