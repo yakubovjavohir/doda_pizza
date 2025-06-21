@@ -3,7 +3,7 @@ import { OrderEntity } from 'src/order/entities/order.entity';
 
 export const databasePravader = TypeOrmModule.forRoot({
     type: 'postgres',
-    host: 'host.docker.internal',
+    host: '192.168.100.190',
     port: 5432,
     username: 'postgres',
     password: '23032006yj',
