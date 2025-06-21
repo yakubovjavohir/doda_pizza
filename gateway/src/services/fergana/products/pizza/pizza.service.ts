@@ -93,19 +93,19 @@ return {
   
       const pizzaData: PizzaData = {
         id: element.id,
-        name: element.name,
-        description: element.description,
-        fixedprice: element.fixedprice,
-        price: element.price,
-        imageUrl: element.imageUrl,
-        url: element.imageUrl,
-        disavailabletoppings: element.disavailabletoppings,
-        vegetarian: element.vegetarian,
-        pepper: element.pepper,
-        variants: element.variants,
+        name: element.name ?? '',
+        description: element.description ?? '',
+        fixedprice: element.fixedprice ?? null,
+        price: element.price ?? null,
+        imageUrl: element.imageUrl ?? '',
+        url: element.imageUrl ?? '',
+        disavailabletoppings: element.disavailabletoppings ?? [],
+        vegetarian: element.vegetarian ?? false,
+        pepper: element.pepper ?? false,
+        variants: element.variants ?? [],
         topping: toppingData,
-        createAt: element.createAt,
-        updateAt: element.updateAt,
+        createAt: element.createAt ?? new Date(),
+        updateAt: element.updateAt ?? new Date(),
       };
   
       allData.push(pizzaData);
@@ -116,6 +116,7 @@ return {
       data: allData,
     };
   }
+  
   
     
 
