@@ -3,7 +3,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ORDER_SERVICE_ORDER_MODULE } from 'src/common/config/service.name';
 import { join } from 'node:path';
 import { OrderController } from './order.controller';
-import { OrderService } from './order.service';
+// import { OrderService } from './order.service';
 import { ProfileModule } from '../profile/profile.module';
 import { IdValidationModule } from '../fergana/products/id-validation/id-validation.module';
 
@@ -24,7 +24,7 @@ import { IdValidationModule } from '../fergana/products/id-validation/id-validat
     IdValidationModule
   ],
   controllers: [OrderController],
-  providers: [OrderService],
-  exports:[OrderService]
+  // providers: [OrderService],
+  // exports:[OrderService]
 })
 export class OrderModule {}

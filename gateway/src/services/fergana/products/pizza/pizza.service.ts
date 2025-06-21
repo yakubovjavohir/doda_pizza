@@ -64,44 +64,59 @@ return {
   }
 
   async findAll() {
-      const result = await lastValueFrom(this.pizzaService.FindAll({}));
-
-      let allData:PizzaData[] = []
-      for (let i = 0; i < result.data.length; i++) {
-        const element = result.data[i];
-        let toppingData : ToppingData[] = []
-        for (let j = 0; j < element.topping.length; j++) {
-          const id = element.topping[j].id as ID;
-          const topping = await this.toppingService.findOne(id)
-          if(topping.data){
-            toppingData.push(topping.data)
+    const result = await lastValueFrom(this.pizzaService.FindAll({}));
+    console.log('🍕 GRPC PizzaService result:', result);
+  
+    const allData: PizzaData[] = [];
+  
+    if (!result?.data || !Array.isArray(result.data)) {
+      return {
+        meta: result?.meta || { message: 'No data', statusCode: 204 },
+        data: [],
+      };
+    }
+  
+    for (const element of result.data) {
+      const toppingData: ToppingData[] = [];
+  
+      if (Array.isArray(element.topping)) {
+        for (const toppingItem of element.topping) {
+          const id = toppingItem?.id as ID;
+          if (!id) continue;
+  
+          const topping = await this.toppingService.findOne(id);
+          if (topping?.data) {
+            toppingData.push(topping.data);
           }
         }
-        const pizzaData: PizzaData = {
-          id: element.id,
-          name: element.name,
-          description: element.description,
-          fixedprice: element.fixedprice,
-          price: element.price,
-          imageUrl: element.imageUrl,
-          url: element.imageUrl,
-          disavailabletoppings: element.disavailabletoppings,
-          vegetarian: element.vegetarian,
-          pepper: element.pepper,
-          variants: element.variants,
-          topping: toppingData,
-          createAt: element.createAt,
-          updateAt: element.updateAt,
-        };
-        
-        allData.push(pizzaData);
-        }
-
-      return {
-        meta: result.meta,
-        data: allData
+      }
+  
+      const pizzaData: PizzaData = {
+        id: element.id,
+        name: element.name,
+        description: element.description,
+        fixedprice: element.fixedprice,
+        price: element.price,
+        imageUrl: element.imageUrl,
+        url: element.imageUrl,
+        disavailabletoppings: element.disavailabletoppings,
+        vegetarian: element.vegetarian,
+        pepper: element.pepper,
+        variants: element.variants,
+        topping: toppingData,
+        createAt: element.createAt,
+        updateAt: element.updateAt,
       };
+  
+      allData.push(pizzaData);
+    }
+  
+    return {
+      meta: result.meta,
+      data: allData,
+    };
   }
+  
     
 
   async findOne(id: ID) {

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { PRODUCT_SERVICE_DESSERT_MODULE, PRODUCT_SERVICE_SNACKS_MODULE } from 'src/common/config/service.name';
+import { PRODUCT_SERVICE_DESSERT_MODULE } from 'src/common/config/service.name';
 import { ClientGrpc } from '@nestjs/microservices';
 import { CreateDessertDto } from './dto/create-dessert.dto';
 import { IDessertService } from './interface/dessert.service';
@@ -38,7 +38,7 @@ return {
       name: data.data.name,
       description: data.data.description,
       fixed__price: fixPrice2,
-      vegetarian: data.data.vegetarian,
+      vegetarian: data.data.vegetarian ,
       dis_available_toppings: data.data.disavailabletoppings,
       price:price2,
       url:data.data.imageUrl,
@@ -50,7 +50,6 @@ return {
 
   async findAll() {
     const result = await lastValueFrom(this.dessertService.FindAll({}))
-    console.log('this desert data ', result);
     
   const data =  {
     meta: result.meta,
@@ -63,6 +62,7 @@ return {
       price:element.price === 0 ? null : element.price,
       dis_available_toppings: element.disavailabletoppings,
       url:element.imageUrl,
+      pepper:null,
       varinats:element.volume,
       createAt: element.createAt,
     })),
@@ -71,23 +71,25 @@ return {
   }
 
   async findOne(id:ID){
-const result = await lastValueFrom(this.dessertService.FindById({id}));
-    const data = result.data
-  return {
+  const result = await lastValueFrom(this.dessertService.FindById({id}));
+  const data = result.data
+  const changeData = {
     meta: data.meta,
     data: {
       id: data.id,
       name: data.name,
       description: data.description,
       fixed__price: data.fixedprice === 0 ? null : data.fixedprice,
-      vegetarian: data.data.vegetarian,
-      dis_available_toppings: data.data.disavailabletoppings,
+      vegetarian: data.vegetarian,
+      dis_available_toppings: data.disavailabletoppings,
       price:data.price === 0 ? null : data.price,
-      url:data.data.imageUrl,
-      createAt: data.data.createAt,
-      updateAt: data.data.updateAt,
+      url:data.imageUrl,
+      createAt: data.createAt,
+      updateAt: data.updateAt,
     }
   }
+  return changeData
+  
   }
 
   delete(id:ID){

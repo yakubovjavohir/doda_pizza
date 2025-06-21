@@ -16,7 +16,6 @@ export class VolumesService {
     this.volumeService = this.client.getService<IVolumesService>('VolumesService');
   }
   async create(dto: CreateVolumesDto) {
-    
     return await lastValueFrom(this.volumeService.Create(dto));
   }
 

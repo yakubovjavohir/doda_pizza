@@ -8,9 +8,8 @@ import { promises as fs } from 'fs';
 import { extname, join } from 'path';
 const uploadPath = join(process.cwd(), 'uploads', 'pizza');
 
-@Controller('fergana/pizza')
+@Controller('pizza')
 export class PizzaController {
-  imageUrl: string[] = [];
   constructor(private readonly pizzaService: PizzaService) {}
  @Post('/upload')
   @UseInterceptors(
@@ -37,7 +36,6 @@ export class PizzaController {
     if (!file) {
       return { message: 'Fayl yuklanmadi!' };
     }
-    this.imageUrl.push(`http://localhost:3000/uploads/pizza/${file.filename}`)    
     return { url: `http://localhost:3000/uploads/pizza/${file.filename}` };
   }
   @Post()

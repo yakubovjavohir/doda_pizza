@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body} from '@nestjs/common';
-import { OrderService } from './order.service';
+// import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { IdValidationService } from '../fergana/products/id-validation/id-validation.service';
 
@@ -7,22 +7,26 @@ import { IdValidationService } from '../fergana/products/id-validation/id-valida
 @Controller('order')
 export class OrderController {
   constructor(
-    private readonly orderService: OrderService,
+    // private readonly orderService: OrderService,
     private readonly idExistService: IdValidationService
   ) {}
 
   @Post()
   async create(@Body() dto: CreateOrderDto) {
+    if (!dto.items || !Array.isArray(dto.items)) {
+      throw new Error('Items array is required and must be an array');
+    }
+    
     for (let i = 0; i < dto.items.length; i++) {
       const id = dto.items[i].productid;
       const type = dto.items[i].type;
       await this.idExistService.id(id, type)
     }
-    return this.orderService.create(dto);
+    // return this.orderService.create(dto);
   }
 
   @Get()
   findAll() {
-    return this.orderService.findAll();
+    // return this.orderService.findAll();
   }
 }

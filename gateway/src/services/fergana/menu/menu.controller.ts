@@ -7,7 +7,7 @@ import { CoffeeService } from '../products/coffee/coffee.service';
 import { SaucesService } from '../products/sauces/sauces.service';
 import { BreakfastService } from '../products/breakfast/breakfast.service';
 
-@Controller('fergana/products')
+@Controller('fergana/menu')
 export class MenuController {
   constructor(
     private readonly pizzaService: PizzaService,
