@@ -1,0 +1,19 @@
+version: '3'
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - order
+      - fergana
+
+  order:
+    build: ./order
+    ports:
+      - "7003:7003"
+
+  fergana:
+    build: ./fergana
+    ports:
+      - "7004:7004"
