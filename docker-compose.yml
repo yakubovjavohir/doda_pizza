@@ -12,20 +12,8 @@ services:
       POSTGRES_DB: doda_pizza_base
     volumes:
       - pgdata:/var/lib/postgresql/data
-
-  gateway:
-    build: ./gateway
-    container_name: gateway
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-    environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USER: postgres
-      DB_PASS: 1234
-      DB_NAME: doda_pizza
+    networks:
+      - pizza-network
 
   fergana:
     build: ./fergana
@@ -34,6 +22,8 @@ services:
       - "7004:7004"
     depends_on:
       - postgres
+    networks:
+      - pizza-network
 
   order:
     build: ./order
@@ -42,6 +32,16 @@ services:
       - "7003:7003"
     depends_on:
       - postgres
+    networks:
+      - pizza-network
 
-volumes:
-  pgdata:
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fergana
+      - order
+    networks:
+      - pizza-network
