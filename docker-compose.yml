@@ -1,18 +1,44 @@
+version: '3.9'
+
 services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 23032006yj
+      POSTGRES_DB: doda_pizza_base
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
   gateway:
     build: ./gateway
+    container_name: gateway
     ports:
       - "3000:3000"
     depends_on:
-      - order
-      - fergana
-
-  order:
-    build: ./order
-    ports:
-      - "7003:7003"
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: 1234
+      DB_NAME: doda_pizza
 
   fergana:
     build: ./fergana
+    container_name: fergana
     ports:
       - "7004:7004"
+    depends_on:
+      - postgres
+
+  order:
+    build: ./order
+    container_name: order
+    ports:
+      - "7003:7003"
+    depends_on:
+      - postgres
