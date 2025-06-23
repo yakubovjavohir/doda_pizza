@@ -8,8 +8,6 @@ services:
       - "7004:7004"
     depends_on:
       - gateway
-    extra_hosts:
-      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
@@ -20,8 +18,6 @@ services:
       - "7003:7003"
     depends_on:
       - gateway
-    extra_hosts:
-      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
@@ -30,8 +26,6 @@ services:
     container_name: gateway
     ports:
       - "3000:3000"
-    extra_hosts:
-      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
