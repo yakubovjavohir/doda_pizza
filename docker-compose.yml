@@ -2,18 +2,18 @@ version: "3.9"
 
 services:
   postgres:
-  image: postgres:15
-  container_name: postgres
-  ports:
-    - "5433:5433"
-  environment:
-    POSTGRES_USER: postgres
-    POSTGRES_PASSWORD: 23032006yj
-    POSTGRES_DB: dodo_pizza_base
-  volumes:
-    - pgdata:/var/lib/postgresql/data
-  networks:
-    - pizza-network
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 23032006yj
+      POSTGRES_DB: dodo_pizza_base
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - pizza-network
 
   fergana:
     build: ./fergana
@@ -21,7 +21,7 @@ services:
     ports:
       - "7004:7004"
     depends_on:
-      - gateway
+      - postgres
     networks:
       - pizza-network
 
@@ -31,7 +31,7 @@ services:
     ports:
       - "7003:7003"
     depends_on:
-      - gateway
+      - postgres
     networks:
       - pizza-network
 
@@ -40,8 +40,14 @@ services:
     container_name: gateway
     ports:
       - "3000:3000"
+    depends_on:
+      - fergana
+      - order
     networks:
       - pizza-network
+
+volumes:
+  pgdata:
 
 networks:
   pizza-network:
