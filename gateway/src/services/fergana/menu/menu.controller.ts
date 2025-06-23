@@ -100,6 +100,7 @@ export class MenuController {
       });
     }
 
+    console.log('this is all data', data);
     
 
     return {
