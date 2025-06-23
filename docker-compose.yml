@@ -42,3 +42,6 @@ services:
       - "7003:7003"
     depends_on:
       - postgres
+
+volumes:
+  pgdata:
