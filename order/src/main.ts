@@ -15,6 +15,11 @@ const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule,
     url:'0.0.0.0:7003'
   },
 });
+console.log('order');
+
 await app.listen()
+
+console.log('order');
+
 }
 bootstrap();

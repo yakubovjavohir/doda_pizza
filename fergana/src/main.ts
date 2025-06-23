@@ -32,6 +32,11 @@ async function bootstrap() {
     },
   });
   app.useGlobalFilters(new AllExceptionsFilter());
+  console.log('fergana');
+  
   await app.listen();
+
+  console.log('fergana');
+
 }
 bootstrap();
