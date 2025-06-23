@@ -9,7 +9,7 @@ services:
     depends_on:
       - gateway
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
@@ -21,7 +21,7 @@ services:
     depends_on:
       - gateway
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
@@ -31,7 +31,7 @@ services:
     ports:
       - "3000:3000"
     extra_hosts:
-      - "host.docker.internal:172.17.0.1"
+      - "172.17.0.1:172.17.0.1"
     networks:
       - pizza-network
 
