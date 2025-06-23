@@ -13,8 +13,8 @@ import { MilkshakesService } from './milkshakes.service';
           options: {
             package: 'milkshakes',
             protoPath: join(__dirname, '../../../../protos/milkshakes.proto'),
-            url:"localhost:7004",
-            // url:"fergana:7004"
+            // url:"localhost:7004",
+            url:"fergana:7004"
           },
         },
       ]),],

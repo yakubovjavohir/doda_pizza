@@ -16,8 +16,8 @@ import { KidsFaveEntity } from 'src/modules/products/kids-fave/entities/kids-fav
 
 export const databasePravader = TypeOrmModule.forRoot({
     type: 'postgres',
-    host: 'localhost',
-    port: 5433,
+    host: 'postgres',
+    port: 5432,
     username: 'postgres',
     password: '23032006yj',
     database: 'dodo_pizza_base',
