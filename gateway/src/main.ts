@@ -27,9 +27,9 @@ app.useGlobalPipes(
   }),
 );
 app.enableCors({
-  origin: 'http://localhost:4000',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
+  origin: '*',
+  // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  // preflightContinue: false,
 }); 
 app.useStaticAssets(join(__dirname, '..', 'uploads'), {
   prefix: '/uploads',
