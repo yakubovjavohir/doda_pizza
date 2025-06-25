@@ -67,43 +67,40 @@ return {
     const result = await lastValueFrom(this.pizzaService.FindAll({}));
     console.log('🍕 GRPC PizzaService result:', result);
   
-    const allData: PizzaData[] = [];
+    // const allData: PizzaData[] = [];
   
-    if (!result?.data || !Array.isArray(result.data)) {
-      return {
-        meta: result?.meta || { message: 'No data', statusCode: 204 },
-        data: [],
-      };
-    }
+    // if (!result?.data || !Array.isArray(result.data)) {
+    //   return {
+    //     meta: result?.meta || { message: 'No data', statusCode: 204 },
+    //     data: [],
+    //   };
+    // }
   
-    for (const element of result.data) {
-      const toppingData: ToppingData[] = [];
+    // for (const element of result.data) {
+    //   const toppingData: ToppingData[] = [];
   
-      const pizzaData: PizzaData = {
-        id: element.id,
-        name: element.name ?? '',
-        description: element.description ?? '',
-        fixedprice: element.fixedprice ?? null,
-        price: element.price ?? null,
-        imageUrl: element.imageUrl ?? '',
-        url: element.imageUrl ?? '',
-        disavailabletoppings: element.disavailabletoppings ?? [],
-        vegetarian: element.vegetarian ?? false,
-        pepper: element.pepper ?? false,
-        variants: element.variants ?? [],
-        topping: toppingData,
-        createAt: element.createAt ?? new Date(),
-        updateAt: element.updateAt ?? new Date(),
-      };
+    //   const pizzaData: PizzaData = {
+    //     id: element.id,
+    //     name: element.name ?? '',
+    //     description: element.description ?? '',
+    //     fixedprice: element.fixedprice ?? null,
+    //     price: element.price ?? null,
+    //     imageUrl: element.imageUrl ?? '',
+    //     url: element.imageUrl ?? '',
+    //     disavailabletoppings: element.disavailabletoppings ?? [],
+    //     vegetarian: element.vegetarian ?? false,
+    //     pepper: element.pepper ?? false,
+    //     variants: element.variants ?? [],
+    //     topping: toppingData,
+    //     createAt: element.createAt ?? new Date(),
+    //     updateAt: element.updateAt ?? new Date(),
+    //   };
   
-      allData.push(pizzaData);
-    }
-    console.log('this is all data pizza', allData);
+    //   allData.push(pizzaData);
+    // }
+    // console.log('this is all data pizza', allData);
     
-    return {
-      meta: result.meta,
-      data: allData,
-    };
+    return result
   }
   
   
