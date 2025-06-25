@@ -8,8 +8,6 @@ services:
       - "7004:7004"
     networks:
       - pizza-network
-    depends_on:
-      - postgres
 
   order:
     build: ./order
@@ -18,8 +16,6 @@ services:
       - "7003:7003"
     networks:
       - pizza-network
-    depends_on:
-      - postgres
 
   gateway:
     build: ./gateway
@@ -31,24 +27,6 @@ services:
     depends_on:
       - fergana
       - order
-
-  postgres:
-    image: postgres:15
-    container_name: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: dodo_pizza_base
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 23032006yj
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - pizza-network
-
-volumes:
-  pgdata:
 
 networks:
   pizza-network:
