@@ -14,8 +14,8 @@ import { BreakfastService } from './breakfast.service';
           options: {
             package: 'breakfast',
             protoPath: join(__dirname, '../../../../protos/breakfast.proto'),
-            // url:"localhost:7004",
-            url:"fergana:7004"
+            url:"localhost:7004",
+            // url:"fergana:7004"
           },
         },
       ]),

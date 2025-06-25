@@ -28,7 +28,7 @@ async function bootstrap() {
         join(__dirname, './protos/breakfast.proto'),
         join(__dirname, './protos/kids-fave.proto')
       ],
-      url:"0.0.0.0:7004"
+      url:"localhost:7004"  // 0.0.0.0
     },
   });
   app.useGlobalFilters(new AllExceptionsFilter());

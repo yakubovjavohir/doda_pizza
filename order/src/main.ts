@@ -12,7 +12,7 @@ const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule,
     protoPath: [
       join(__dirname, './protos/order.proto')
     ],
-    url:'0.0.0.0:7003'
+    url:'localhost:7003' //0.0.0.0
   },
 });
 console.log('order');
