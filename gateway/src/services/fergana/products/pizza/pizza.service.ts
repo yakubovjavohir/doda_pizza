@@ -79,18 +79,6 @@ return {
     for (const element of result.data) {
       const toppingData: ToppingData[] = [];
   
-      if (Array.isArray(element.topping)) {
-        for (const toppingItem of element.topping) {
-          const id = toppingItem?.id as ID;
-          if (!id) continue;
-  
-          const topping = await this.toppingService.findOne(id);
-          if (topping?.data) {
-            toppingData.push(topping.data);
-          }
-        }
-      }
-  
       const pizzaData: PizzaData = {
         id: element.id,
         name: element.name ?? '',

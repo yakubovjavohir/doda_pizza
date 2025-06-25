@@ -23,84 +23,53 @@ export class MenuController {
   async findAll() {
     let data: any[] = []
     const pizzas = await this.pizzaService.findAll();
+    console.log(pizzas);
     
-
-    if(pizzas.data.length > 0){
-      pizzas.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: 'pizza',
-        });
-      });
+    if (pizzas.data.length > 0) {
+      pizzas.data.forEach(el => data.push({ ...el, type: 'pizza' }));
     }
     
     const snacks = await this.snacksService.findAll();
+    console.log(snacks);
     
-    if(snacks.data.length > 0){
-      snacks.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: 'snacks',
-        });
-      });
+    if (snacks.data.length > 0) {
+      snacks.data.forEach(el => data.push({ ...el, type: 'snacks' }));
     }
-
+    
     const desserts = await this.dessertService.findAll();
-
-    if(desserts.data.length > 0){
-      desserts.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: "dessert",
-        });
-      });
+    console.log(desserts);
+    
+    if (desserts.data.length > 0) {
+      desserts.data.forEach(el => data.push({ ...el, type: 'dessert' }));
     }
-
+    
     const drink = await this.drinksService.findAll();
-
-    if(drink.data.length > 0){
-      drink.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: "drink",
-        });
-      });
+    console.log(drink);
+    
+    if (drink.data.length > 0) {
+      drink.data.forEach(el => data.push({ ...el, type: 'drink' }));
     }
-
+    
     const saucesS = await this.saucesService.findAll();
-
-    if(saucesS.data.length > 0){
-      saucesS.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: "sauces",
-        });
-      });
+    console.log(saucesS);
+    
+    if (saucesS.data.length > 0) {
+      saucesS.data.forEach(el => data.push({ ...el, type: 'sauces' }));
     }
-
+    
     const coffee = await this.coffeeService.findAll();
-
-    if(coffee.data.length > 0){
-      coffee.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: "coffee",
-        });
-      });
+    console.log(coffee);
+    
+    if (coffee.data.length > 0) {
+      coffee.data.forEach(el => data.push({ ...el, type: 'coffee' }));
     }
-
+    
     const breakfast = await this.breakfastService.findAll();
-
-    if(breakfast.data.length > 0){
-      breakfast.data.forEach((el) => {
-        data.push({
-          ...el,
-          type: "breakfast",
-        });
-      });
+    console.log(breakfast);
+    
+    if (breakfast.data.length > 0) {
+      breakfast.data.forEach(el => data.push({ ...el, type: 'breakfast' }));
     }
-
-    console.log('this is all data', data);
     
 
     return {
