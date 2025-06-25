@@ -14,8 +14,8 @@ import { PricesController } from './prices.controller';
             options: {
               package: 'prices',
               protoPath: join(__dirname, '../../../../../protos/prices.proto'),
-              url:"localhost:7004",
-            //  url:"fergana:7004"
+              // url:"localhost:7004",
+             url:"fergana:7004"
             },
           },
         ])
