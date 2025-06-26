@@ -37,7 +37,7 @@ app.useStaticAssets(join(__dirname, '..', 'uploads'), {
 const httpAdapter = app.get(HttpAdapterHost);
 app.useGlobalFilters(new CatchEverythingFilter(httpAdapter));
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
 
 
