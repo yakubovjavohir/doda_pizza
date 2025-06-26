@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { DrinksService } from './drinks.service';
 import { CreateDrinkDto } from './dto/create-drink.dto';
+import { ID } from 'src/common/TYPES';
 
 @Controller('drinks')
 export class DrinksController {
@@ -26,13 +27,13 @@ export class DrinksController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.drinksService.findOne(+id);
+  findOne(@Param('id') id: ID) {
+    return this.drinksService.findOne(id);
   }
 
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.drinksService.remove(+id);
+  remove(@Param('id') id: ID) {
+    return this.drinksService.remove(id);
   }
 }

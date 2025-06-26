@@ -19,11 +19,11 @@ export class SaucesController {
 
   @Get(':id')
   findOne(@Param('id') id: ID) {
-    return this.saucesService.findOne(+id);
+    return this.saucesService.findOne(id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: ID) {
-    return this.saucesService.remove(+id);
+    return this.saucesService.remove(id);
   }
 }

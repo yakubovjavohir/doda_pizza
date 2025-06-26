@@ -5,7 +5,7 @@ import { PricesEntity } from "../../mini-data/prices/entities/price.entity";
 
 @Entity("topping")
 export class ToppingEntity{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id:ID
 
     @Column({type:String})

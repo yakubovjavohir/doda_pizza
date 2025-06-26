@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsNotEmpty } from "class-validator";
+import { ID } from "src/common/TYPES";
 
 export class CreateFactDto {
     @ApiProperty()      
@@ -25,5 +26,5 @@ export class CreateFactDto {
     @ApiProperty()      
     @IsInt()
     @IsNotEmpty()
-    tt: number;
+    tt: ID;
 }

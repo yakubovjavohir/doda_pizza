@@ -5,7 +5,7 @@ import { FactsEntity } from "../../facts/entities/fact.entity";
 
 @Entity('traditional_and_thin')
 export class TTEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id:ID
 
     @Column()

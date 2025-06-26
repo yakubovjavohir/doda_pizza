@@ -98,7 +98,7 @@ return {
   }
   }
 
-  remove(id: number) {
+  remove(id: ID) {
     return this.saucesService.Delete({id})
   }
 }

@@ -4,7 +4,7 @@ import { ToppingEntity } from 'src/modules/products/toppings/entities/topping.en
 
 @Entity('prices')
 export class PricesEntity {
-      @PrimaryGeneratedColumn()
+      @PrimaryGeneratedColumn('uuid')
       id: ID;
     
       @Column()

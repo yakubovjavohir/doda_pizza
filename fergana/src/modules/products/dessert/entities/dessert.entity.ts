@@ -4,7 +4,7 @@ import { VolumesEntity } from '../../mini-data/volumes/entities/volume.entity';
 
 @Entity('dessert')
 export class DessertEntity{
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: ID;
 
   @Column()

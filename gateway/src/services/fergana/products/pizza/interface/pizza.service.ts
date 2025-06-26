@@ -73,7 +73,7 @@ export interface CreatePizza {
     disavailabletoppings?:string[];
     vegetarian?:boolean;
     pepper?:boolean,
-    topping:number[]
+    topping:ID[]
 }
 
 export interface Delete {

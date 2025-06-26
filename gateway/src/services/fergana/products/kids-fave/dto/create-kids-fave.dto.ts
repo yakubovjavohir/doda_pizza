@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import { ID } from 'src/common/TYPES';
 
 export class CreateKidsFaveDto {
   @ApiProperty({
@@ -14,7 +15,7 @@ export class CreateKidsFaveDto {
     example: 1
   })
   @IsNumber()
-  product: number;
+  product: ID;
 
   @ApiProperty({
     description: 'Whether the product is spicy',

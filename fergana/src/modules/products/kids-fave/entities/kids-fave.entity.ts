@@ -3,7 +3,7 @@ import { ID } from 'src/common/types';
 
 @Entity('kids_fave')
 export class KidsFaveEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: ID;
 
   @Column()

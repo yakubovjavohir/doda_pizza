@@ -5,7 +5,7 @@ import { ToppingEntity } from '../../toppings/entities/topping.entity';
 
 @Entity('coffee')
 export class CoffeeEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: ID;
 
   @Column()

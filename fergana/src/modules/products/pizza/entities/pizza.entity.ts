@@ -7,7 +7,7 @@ import { TTEntity } from "../../mini-data/t-t/entities/t-t.entity";
 
 @Entity('pizza')
 export class PizzaEntity{
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id:ID
 
     @Column({type:String, nullable:false})

@@ -10,7 +10,7 @@ import { BreakfastEntity } from "src/modules/products/breakfast/entities/breakfa
 
 @Entity('volume')
 export class VolumesEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id:ID
 
     @Column()

@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsBoolean, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { ID } from "src/common/TYPES";
 export class CreatePizzaDto {
     @ApiProperty()
     @IsString()
@@ -41,7 +42,7 @@ export class CreatePizzaDto {
 
     @ApiProperty()
     @IsInt({each: true})
-    topping: number[];
+    topping: ID[];
 }
 
 

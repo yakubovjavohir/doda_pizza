@@ -105,7 +105,7 @@ return {
   }
   }
 
-  remove(id: number) {
+  remove(id: ID) {
     return this.drinkService.Delete({id})
   }
 }

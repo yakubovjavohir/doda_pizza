@@ -19,6 +19,6 @@ export class PricesController {
 
   @Get(':id')
   findOne(@Param('id') id: ID) {
-    return this.pricesService.findOne(+id);
+    return this.pricesService.findOne(id);
   }
 }
