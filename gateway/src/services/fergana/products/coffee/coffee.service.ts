@@ -25,7 +25,7 @@ export class CoffeeService {
     const data = await lastValueFrom(this.coffeeService.Create(dto));
     let toppingData : Topping[] = []
     for (let i = 0; i < dto.topping.length; i++) {
-      const id = dto.topping[i] as ID;
+      const id = dto.topping[i] as unknown as ID;
       const topping = await this.toppingService.findOne(id);
       if(topping.data){
         toppingData.push({
