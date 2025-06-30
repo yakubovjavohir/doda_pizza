@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
 import { ID } from 'src/common/types';
 import { VolumesEntity } from '../../mini-data/volumes/entities/volume.entity';
+import { IDisavaileabletoppings } from '../../pizza/interface/disavailabletoppings';
 
 @Entity('breakfast')
 export class BreakfastEntity {
@@ -19,8 +20,8 @@ export class BreakfastEntity {
   @Column({ default: false, nullable:true })
   vegetarian: boolean;
 
-  @Column("text", { array: true, name:'dis_available_toppings', default:[], nullable:true})
-  disavailabletoppings: string[];
+  @Column('json', { name: 'dis_available_toppings', nullable: true, default: [] })
+  disavailabletoppings: IDisavaileabletoppings[] | null; 
 
   @Column()
   imageUrl: string;

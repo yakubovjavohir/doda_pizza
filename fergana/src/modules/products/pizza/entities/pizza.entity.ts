@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, Pri
 import { IImageOption } from "../interface/pizza";
 import { ToppingEntity } from "../../toppings/entities/topping.entity";
 import { TTEntity } from "../../mini-data/t-t/entities/t-t.entity";
+import { IDisavaileabletoppings } from "../interface/disavailabletoppings";
 
 
 @Entity('pizza')
@@ -25,8 +26,8 @@ export class PizzaEntity{
     @Column({ default: false, nullable:true })
     vegetarian: boolean;
 
-    @Column("text", { array: true, name:'dis_available_toppings', default:[], nullable:true})
-    disavailabletoppings: string[];
+    @Column('json', { name: 'dis_available_toppings', nullable: true, default: [] })
+    disavailabletoppings: IDisavaileabletoppings[] | null; 
 
     @Column({ default: false, nullable:true })
     pepper: boolean;

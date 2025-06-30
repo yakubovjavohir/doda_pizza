@@ -34,8 +34,6 @@ export class ToppingsController {
         }
       })
     };
-    console.log(returnData);
-    
     return returnData;
   }
 
@@ -54,8 +52,6 @@ export class ToppingsController {
         updateAt:data.data?.updateAt,
       }
     };
-    console.log(returnData);
-    
     return returnData;
   }
 }

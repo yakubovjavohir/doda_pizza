@@ -55,5 +55,5 @@ export interface CreateCoffee {
     price?:number
     imageUrl:string
     fixedprice?:number
-    topping:number[]
+    topping:ID[]
 }

@@ -14,7 +14,7 @@ export class CreatePriceDto {
     price:number
 
     @ApiProperty()
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     topping:ID
 }

@@ -10,16 +10,16 @@ service ToppingService {
 }
 
 message ById {
-  int32 id = 1;
+  string id = 1;
 }
 
 message Void {}
 
 message PriceOption {
-    int32 id = 1;
+    string id = 1;
     string size = 2;
-    int32 prices = 3;
-    int32 topping = 4;
+    int32 price = 3;
+    string topping = 4;
     string createAt = 5;
     string updateAt = 6;
 }
@@ -36,7 +36,7 @@ message IMeta {
 }
 
 message Data {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   repeated PriceOption prices = 3;
   string type = 4;

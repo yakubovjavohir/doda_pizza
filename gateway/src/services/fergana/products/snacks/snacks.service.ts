@@ -52,6 +52,8 @@ return {
   
   async findAll() {
     const result = await lastValueFrom(this.snackService.FindAll({}));
+    console.log('------', result);
+    
   const data = {
     meta: result.meta,
     data: result.data.map((element) => ({
@@ -72,7 +74,7 @@ return {
 }
 
 async findOne(id:ID) {
-  const data = await lastValueFrom(this.snackService.FindOne({id}));
+  const data = await lastValueFrom(this.snackService.FindById({id}));
     
   let fixPrice2: number | null = 0
   let price2: number | null = 0

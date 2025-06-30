@@ -31,7 +31,7 @@ export class CreateTTDto {
     price: number;
 
     @ApiProperty()
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     pizza: ID;
 

@@ -13,8 +13,8 @@ import { DessertService } from './dessert.service';
           options: {
             package: 'dessert',
             protoPath: join(__dirname, '../../../../protos/dessert.proto'),
-            // url:"localhost:7004",
-            url:"fergana:7004"
+            url:"localhost:7004",
+            // url:"fergana:7004"
           },
         },
       ])],

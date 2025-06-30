@@ -47,6 +47,7 @@ export interface ResDataList {
 }
 
 export interface Prices {
+    id:string
     size: string,
     prices: number,
     createAt: string,

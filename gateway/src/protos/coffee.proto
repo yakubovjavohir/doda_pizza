@@ -13,7 +13,7 @@ service CoffeeService {
 message Void {}
 
 message ById {
-  int32 id = 1;
+  string id = 1;
 }
 
 message CreateCoffee {
@@ -22,7 +22,7 @@ message CreateCoffee {
   int32 price = 3;
   string imageUrl = 4;
   int32 fixedprice = 5;
-  repeated int32 topping = 6;
+  repeated string topping = 6;
 }
 
 message IMeta {
@@ -31,18 +31,18 @@ message IMeta {
 }
 
 message Volume {
-  int32 id = 1;
+  string id = 1;
   string size = 2;
   int32 weight = 3;
   string imageUrl = 4;
   int32 price = 5;
   string createAt = 6;
   string type = 7;
-  int32 product = 8;
+  string product = 8;
 }
 
 message Data {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   string description = 3;
   repeated Volume volume = 4;
@@ -50,7 +50,7 @@ message Data {
   string imageUrl = 6;
   int32 fixedprice = 7;
   string createAt = 8;
-  repeated int32 topping = 9;
+  repeated string topping = 9;
 }
 
 message ResData {

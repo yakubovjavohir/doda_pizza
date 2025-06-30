@@ -10,7 +10,7 @@ service TTService {
 }
 
 message ById {
-  int32 id = 1;
+  string id = 1;
 }
 
 message Void {}
@@ -20,17 +20,17 @@ message CreateTT {
   int32 sm = 2;
   int32 weight = 3;
   int32 price = 4;
-  int32 pizza = 5;
+  string pizza = 5;
   string imageUrl = 6;
 }
 
 message Fact {
-  int32 id = 1;
+  string id = 1;
   int32 calories = 2;
   int32 protein = 3;
   int32 fat = 4;
   int32 carbohydrate = 5;
-  int32 tt = 6;
+  string tt = 6;
   string createAt = 7;
   string updateAt = 8;
 }
@@ -41,12 +41,12 @@ message IMeta {
 }
 
 message Data {
-  int32 id = 1;
+  string id = 1;
   string size = 2;
   int32 sm = 3;
   int32 weight = 4;
   int32 price = 5;
-  int32 pizza = 6;
+  string pizza = 6;
   repeated Fact facts = 7;
   string imageUrl = 8;
   string createAt = 9;

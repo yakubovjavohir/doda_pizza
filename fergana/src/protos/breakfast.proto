@@ -12,7 +12,12 @@ service BreakfastService {
 message Void {}
 
 message ById {
-  int32 id = 1;
+  string id = 1;
+}
+
+message DisTopp {
+  string id = 1;
+  string name = 2;
 }
 
 message CreateBreakfast {
@@ -31,25 +36,25 @@ message IMeta {
 }
 
 message Volume {
-  int32 id = 1;
+  string id = 1;
   string size = 2;
   int32 weight = 3;
   string imageUrl = 4;
   int32 price = 5;
   string createAt = 6;
   string type = 7;
-  int32 product = 8;
+  string product = 8;
 }
 
 message Data {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   string description = 3;
   repeated Volume volume = 4;
   int32 price = 5;
   string imageUrl = 6;
   int32 fixedprice = 7;
-  repeated string disavailabletoppings = 8;
+  repeated DisTopp disavailabletoppings = 8;
   bool vegetarian = 9;
   string createAt = 10;
 }

@@ -5,24 +5,23 @@ export interface Item {
   type:string
   quantity:number
   price:number
-  variants:any[]
-  topping:any[]
-  tt:any[]
+  variants:ID[]
+  topping:ID[]
+  tt:ID[]
 }
 @Entity('order')
 export class OrderEntity {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id:ID;
 
-  @Column()
-  user: ID;
+  @Column({type:'text'})
+  user:ID;
 
   @Column('decimal', {name:'total_price'})
-  totalprice: number;
+  totalprice:number;
 
   @Column({ default: 'pending' })
   status: 'pending' | 'paid' | 'delivered';
-
   @Column()
   address:string
 

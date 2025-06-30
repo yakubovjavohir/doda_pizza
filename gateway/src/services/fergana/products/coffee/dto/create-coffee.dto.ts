@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { ID } from "src/common/TYPES";
 
 export class CreateCoffeeDto {
     @ApiProperty()
@@ -28,6 +29,6 @@ export class CreateCoffeeDto {
     price: number
 
     @ApiProperty()
-    @IsInt({each: true})
-    topping: number[];
+    @IsString({each: true})
+    topping: ID[];
 }

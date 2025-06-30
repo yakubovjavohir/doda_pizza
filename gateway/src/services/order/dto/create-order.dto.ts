@@ -5,7 +5,7 @@ import { ID } from "src/common/TYPES";
 
 export class Item {
     @ApiProperty()
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     productid:ID
 
@@ -27,22 +27,22 @@ export class Item {
     @ApiProperty()
     @IsArray()
     @IsOptional()
-    variants?:any[]
+    variants?:ID[]
 
     @ApiProperty()
     @IsArray()
     @IsOptional()
-    toppings?:any[]
+    toppings?:ID[]
 
     @ApiProperty()
     @IsArray()
     @IsOptional()
-    tt?:any[]
+    tt?:ID[]
 }
 
 export class CreateOrderDto {
     @ApiProperty()
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     user:ID
 

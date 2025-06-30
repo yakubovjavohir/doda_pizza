@@ -13,6 +13,8 @@ export class OrderController {
 
   @GrpcMethod("OrderService", "Create")
   create(@Payload() dto: OrderEntity) {
+    console.log(dto);
+    
     return this.orderService.create(dto);
   }
 

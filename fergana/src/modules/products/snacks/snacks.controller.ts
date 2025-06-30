@@ -3,6 +3,8 @@ import { GrpcMethod, MessagePattern, Payload } from '@nestjs/microservices';
 import { SnacksService } from './snacks.service';
 import { SnackEntity } from './entities/snack.entity';
 import { ID } from 'src/common/types';
+import { IDisavaileabletoppings } from '../pizza/interface/disavailabletoppings';
+import { v4 } from 'uuid';
 
 @Controller()
 export class SnacksController {
@@ -13,6 +15,7 @@ export class SnacksController {
 
   @GrpcMethod('SnackService', 'Create')
   async create(dto: SnackEntity) {
+    
     let fixPrice: number | null = 0
     let price: number | null = 0
 
@@ -28,6 +31,22 @@ export class SnacksController {
       price = dto.price
     }
 
+    
+    let disTopp: IDisavaileabletoppings[] = [];
+
+    if (Array.isArray(dto.disavailabletoppings) && dto.disavailabletoppings.length > 0) {
+      for (let i = 0; i < dto.disavailabletoppings.length; i++) {
+        const name = dto.disavailabletoppings[i];
+        disTopp.push({
+          id: v4(),
+          name: name as unknown as string,
+        });
+      }
+    }
+    
+
+    
+
     const changeData = {
       id:dto.id,
       name:dto.name,
@@ -35,7 +54,7 @@ export class SnacksController {
       fixedprice:fixPrice,
       vegetarian:dto.vegetarian,
       price:price,
-      disavailabletoppings:dto.disavailabletoppings,
+      disavailabletoppings:disTopp.length === 0 ? null : disTopp,
       pepper:dto.pepper,
       imageUrl:dto.imageUrl,
     }
@@ -103,8 +122,9 @@ export class SnacksController {
   return newData;
   }
 
-  @GrpcMethod('SnaksService', 'FindById')
+  @GrpcMethod('SnackService', 'FindById')
   async findOne(dto:{id:ID}){
+    
     const resdata = await this.snacksService.findOne(dto.id);
     const data = resdata.data
 

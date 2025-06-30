@@ -34,6 +34,7 @@ export class CoffeeService {
           type: topping.data.type,
           imageUrl: topping.data.imageUrl,
           prices: topping.data.prices.map(p => ({
+            id:p.id,
             size: p.size,
             prices: p.prices,
             createAt: p.createAt,
@@ -134,6 +135,7 @@ return {
             type: topping.data.type,
             imageUrl: topping.data.imageUrl,
             prices: topping.data.prices.map(p => ({
+              id:p.id,
               size: p.size,
               prices: p.prices,
               createAt: p.createAt,

@@ -14,8 +14,8 @@ import { TTService } from './t-t.service';
             options: {
               package: 'tt',
               protoPath: join(__dirname, '../../../../../protos/t-t.proto'),
-              // url:"localhost:7004",
-            url:"fergana:7004"
+              url:"localhost:7004",
+            // url:"fergana:7004"
 
             },
           },

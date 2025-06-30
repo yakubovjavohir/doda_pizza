@@ -4,6 +4,8 @@ import { DessertService } from './dessert.service';
 import { DessertEntity } from './entities/dessert.entity';
 import { ID } from 'src/common/types';
 import { IMeta } from 'src/lib/resdata';
+import { v4 } from 'uuid';
+import { IDisavaileabletoppings } from '../pizza/interface/disavailabletoppings';
 @Controller()
 export class DessertController {
   constructor(
@@ -29,17 +31,10 @@ export class DessertController {
       price = dto.price
     }
 
-    const changeData = {
-      id:dto.id,
-      name:dto.name,
-      description:dto.description,
-      fixedprice:fixPrice,
-      vegetarian:dto.vegetarian,
-      price:price,
-      disavailabletoppings:dto.disavailabletoppings,
-      imageUrl:dto.imageUrl,
-    }
-    const dessertEntity = Object.assign(new DessertEntity(), changeData);
+
+    dto.fixedprice = fixPrice
+    dto.price = price
+    const dessertEntity = Object.assign(new DessertEntity(), dto);
     
     const resdata = await this.dessertService.create(dessertEntity);
     const data = resdata.data
@@ -69,7 +64,6 @@ export class DessertController {
           fixedprice:fixPrice2,
           vegetarian:data?.vegetarian,
           price:price2,
-          disavailabletoppings:data?.disavailabletoppings,
           imageUrl:data?.imageUrl,
           createAt:data?.createAt,
         }
@@ -90,7 +84,6 @@ export class DessertController {
           description: element.description,
           price: element.price ?? 0,
           fixedprice: element.fixedprice ?? 0,
-          disavailabletoppings: element.disavailabletoppings,
           vegetarian: element.vegetarian,
           imageUrl: element.imageUrl,
           volume: element.volume,
@@ -104,8 +97,22 @@ export class DessertController {
   }
 
   @GrpcMethod('DessertService', 'FindById')
-  findOne(dto : {id:ID}) {
-    return this.dessertService.findOne(dto.id);
+  async findOne(dto : {id:ID}) {
+    const data = await this.dessertService.findOne(dto.id);
+    return {
+      meta:data.meta,
+      data:{
+        id:data.data?.id,
+        name:data.data?.name,
+        description:data?.data?.description,
+        fixedprice:data.data?.fixedprice === null ? 0 : data.data?.fixedprice,
+        vegetarian:data?.data?.vegetarian,
+        price:data.data?.price === null ? 0 : data.data?.price,
+        imageUrl:data?.data?.imageUrl,
+        createAt:data?.data?.createAt,
+        volume:data.data?.volume
+      }
+  }
     
   }
 

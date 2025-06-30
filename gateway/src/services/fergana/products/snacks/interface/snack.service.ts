@@ -4,7 +4,7 @@ import { ID } from "src/common/TYPES";
 export interface ISnackService {
     Create(dto:CreateSnack):Observable<ResData>
     FindAll(dto:IVoid):Observable<ResDataList>
-    FindOne(id:ById):Observable<ResData>
+    FindById(id:ById):Observable<ResData>
 }
 export interface IVoid {}
 

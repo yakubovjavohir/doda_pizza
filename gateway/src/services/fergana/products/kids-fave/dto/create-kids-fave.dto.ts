@@ -14,7 +14,7 @@ export class CreateKidsFaveDto {
     description: 'ID of the referenced product',
     example: 1
   })
-  @IsNumber()
+  @IsString()
   product: ID;
 
   @ApiProperty({

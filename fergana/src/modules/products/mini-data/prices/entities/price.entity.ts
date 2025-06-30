@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import { ID } from 'src/common/types';
 import { ToppingEntity } from 'src/modules/products/toppings/entities/topping.entity';
 
-@Entity('prices')
+@Entity('topping_prices')
 export class PricesEntity {
       @PrimaryGeneratedColumn('uuid')
       id: ID;

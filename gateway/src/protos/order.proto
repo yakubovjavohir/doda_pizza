@@ -12,54 +12,32 @@ service OrderService {
 message Fail {}
 
 
-message Topping {
-  int32 toppingid = 1;
-  string type = 2;
-  string size = 3;
-}
-
-message Volume {
-  int32 variantsid = 1;
-  string type = 2;
-}
-
 message OrderItem {
-  int32 productid = 1;
+  string productid = 1;
   int32 quantity = 2;
   int32 price = 3;
   string type = 4;
-  repeated Topping toppings = 5;
-  repeated Volume variants = 6;
-  repeated ITT tt = 7;
-}
-
-message ITT {
-  int32 ttid = 1;
-  string type = 2;
-  string size = 3;
-  string sm = 4;
+  repeated string toppings = 5;
+  repeated string variants = 6;
+  repeated string tt = 7;
 }
 
 message CreateOrder {
-    int32 user = 1;
+    string user = 1;
     int32 totalprice = 2;
     string status = 3;
     string address = 4;
     repeated OrderItem items = 5;
-    repeated Topping toppings = 6;
-    repeated Volume variants = 7;
-    repeated ITT tt = 8;
 }
 
 message Data {
-  int32 id = 1;
-  int32 user = 2;
+  string id = 1;
+  string user = 2;
   int32 totalprice = 3;
   string status = 4;  
   string address = 5;
   repeated OrderItem items = 6;
   string createAt = 7;
-  repeated Topping toppings = 8;
 }
 
 message Meta {

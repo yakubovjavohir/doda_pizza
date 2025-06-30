@@ -4,7 +4,8 @@ import { PizzaService } from './pizza.service';
 import { PizzaEntity } from './entities/pizza.entity';
 import { ID } from 'src/common/types';
 import { ToppingsService } from '../toppings/toppings.service';
-import { ToppingEntity } from '../toppings/entities/topping.entity';
+import {v4} from 'uuid'
+import { IDisavaileabletoppings } from './interface/disavailabletoppings';
 
 @Controller()
 export class PizzaController {
@@ -18,7 +19,6 @@ export class PizzaController {
 
   @GrpcMethod('PizzaService', 'Create')
   async create(dto: PizzaEntity): Promise<{ meta: any; data: any }> {
-    console.log('18-06-2025 ', dto);
     
     let fixPrice: number | null = 0
     let price: number | null = 0
@@ -35,6 +35,18 @@ export class PizzaController {
       price = dto.price
     }
 
+    let disTopp: IDisavaileabletoppings[] = [];
+
+    if (Array.isArray(dto.disavailabletoppings) && dto.disavailabletoppings.length > 0) {
+      for (let i = 0; i < dto.disavailabletoppings.length; i++) {
+        const name = dto.disavailabletoppings[i];
+        disTopp.push({
+          id: v4(),
+          name: name as unknown as string,
+        });
+      }
+    }
+
 
     const changeData = {
       id:dto.id,
@@ -43,7 +55,7 @@ export class PizzaController {
       fixedprice:fixPrice,
       vegetarian:dto.vegetarian,
       price:price,
-      disavailabletoppings:dto.disavailabletoppings,
+      disavailabletoppings:disTopp.length === 0 ? null : disTopp,
       pepper:dto.pepper,
       imageUrl:dto.imageUrl,
       topping:dto.topping

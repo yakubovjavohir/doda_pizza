@@ -10,7 +10,7 @@ service VolumesService {
 }
 
 message ById {
-  int32 id = 1;
+  string id = 1;
 }
 
 message Void {}
@@ -20,7 +20,7 @@ message CreateVolumes {
   int32 weight = 2;
   string imageUrl = 3;
   int32 price = 4;
-  int32 product = 5;
+  string product = 5;
   string type = 6;
 }
 
@@ -31,14 +31,15 @@ message IMeta {
 }
 
 message Data {
-  string size = 1;
+  string id = 1;
   int32 weight = 2;
   string imageUrl = 3;
   int32 price = 4;
-  int32 product = 5;
+  string product = 5;
   string type = 6;
-  string createAt = 7;
-  string updateAt = 8;
+  string size = 7;
+  string createAt = 8;
+  string updateAt = 9;
 }
 
 message ResData {

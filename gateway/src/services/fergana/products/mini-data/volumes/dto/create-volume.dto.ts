@@ -24,7 +24,7 @@ export class CreateVolumesDto {
     imageUrl: string;
 
     @ApiProperty()
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     product: ID;
 

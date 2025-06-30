@@ -13,11 +13,16 @@ service PizzaService {
 message Void {}
 
 message ById {
-    int32 id = 1;
+    string id = 1;
+}
+
+message DisTopp {
+  string id = 1;
+  string name = 2;
 }
 
 message Fact {
-  int32 id = 1;
+  string id = 1;
   int32 calories = 2;
   int32 protein = 3;
   int32 fat = 4;
@@ -25,7 +30,7 @@ message Fact {
 }
 
 message ITTOption {
-  int32 id = 1;
+  string id = 1;
   string size = 2;
   int32 weight = 3;
   int32 sm = 4;
@@ -44,8 +49,8 @@ message CreatePizza {
   int32 fixedprice = 5;
   repeated string disavailabletoppings = 6;
   bool vegetarian = 7;
-  bool pepper = 8;
-  repeated int32 topping = 9;
+  bool pepper = 8; 
+  repeated string topping = 9;
 }
 
 message IMeta {
@@ -54,17 +59,17 @@ message IMeta {
 }
 
 message Data {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
   string description = 3;
   int32 price = 4;
   string imageUrl = 5;
   int32 fixedprice = 6;
-  repeated string disavailabletoppings = 7;
+  repeated DisTopp disavailabletoppings = 7;
   bool vegetarian = 8;
   bool pepper = 9;
   repeated ITTOption variants = 10;
-  repeated int32 topping = 11;
+  repeated string topping = 11;
   string createAt = 12;
   string updateAt = 13;
 }

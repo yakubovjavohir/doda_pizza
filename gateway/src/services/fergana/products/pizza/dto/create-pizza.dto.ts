@@ -41,7 +41,7 @@ export class CreatePizzaDto {
     price?: number;
 
     @ApiProperty()
-    @IsInt({each: true})
+    @IsString({each: true})
     topping: ID[];
 }
 

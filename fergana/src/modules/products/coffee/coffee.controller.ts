@@ -57,8 +57,6 @@ export class CoffeeController {
 
   @GrpcMethod('CoffeeService', 'FindAll')
   async findAll() {
-    console.log("salomla");
-    
     const data = await this.coffeeService.findAll();
     return {
       meta:data.meta,
@@ -79,7 +77,6 @@ export class CoffeeController {
   @GrpcMethod('CoffeeService', 'FindById')
   async findOne(dto:{id: ID}) {
     const data = await this.coffeeService.findOne(dto.id);
-    console.log(data);
     
     return {
       meta:data.meta,

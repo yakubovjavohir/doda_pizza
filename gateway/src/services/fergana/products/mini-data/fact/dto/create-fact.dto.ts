@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsNotEmpty } from "class-validator";
+import { IsInt, IsNotEmpty, IsString } from "class-validator";
 import { ID } from "src/common/TYPES";
 
 export class CreateFactDto {
@@ -24,7 +24,7 @@ export class CreateFactDto {
     carbohydrate: number;
 
     @ApiProperty()      
-    @IsInt()
+    @IsString()
     @IsNotEmpty()
     tt: ID;
 }
