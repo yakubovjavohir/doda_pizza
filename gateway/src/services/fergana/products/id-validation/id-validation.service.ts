@@ -19,7 +19,8 @@ import { CoffeeData } from '../coffee/interface/coffee.service';
 import { BreakfastData } from '../breakfast/interface/breakfast.service';
 import { TTData } from '../mini-data/t-t/interface/t-t.service';
 import { VolumesData } from '../mini-data/volumes/interface/volumes.service';
-import { ToppingData } from '../toppings/interface/toppings.service';
+import { Prices, ToppingData } from '../toppings/interface/toppings.service';
+import { PricesService } from '../mini-data/prices/prices.service';
 
 @Injectable()
 export class IdValidationService {
@@ -33,7 +34,8 @@ export class IdValidationService {
         private readonly drink : DrinksService,
         private readonly traditional_and_thin : TTService,
         private readonly volume : VolumesService,
-        private readonly topping : ToppingsService
+        private readonly topping : ToppingsService,
+        private readonly prices : PricesService
     ){}
 
     async id(id:ID, type:string){
@@ -50,17 +52,17 @@ export class IdValidationService {
             return (await this.sauces.findOne(id)).data as unknown as SaucesData
         }
         if(type === "snack"){
-            return (await this.snack.findOne(id)).data as unknown as SnackData
+            const data = (await this.snack.findOne(id)).data as unknown as SnackData
+            return data
         }
         if(type === "coffee"){
             const data = await this.coffee.findOne(id) as unknown as CoffeeData
-            console.log('data', data);
             return data
         }
         if(type === "breakfast"){
             return (await this.breakfast.findOne(id)).data as unknown as BreakfastData
         }
-        if(type === "traditional_and_thin" || type === "thin"){
+        if(type === "traditional" || type === "thin"){
             return (await this.traditional_and_thin.findOne(id)).data as unknown as TTData
         }
         if(type === "volume"){
@@ -68,6 +70,9 @@ export class IdValidationService {
         }
         if(type === "topping"){
             return (await this.topping.findOne(id)).data as unknown as ToppingData
+        }
+        if(type === "prices"){
+            return ((await this.prices.findOne(id)).data as unknown as Prices)
         }
     }   
 }

@@ -30,7 +30,9 @@ export class CoffeeController {
       volume:dto.volume,
       product:dto.product,
       type:dto.type,
+      newItem:false,
       topping:dto.topping,
+      location:dto.location,
       createAt:dto.createAt,
     }
 
@@ -69,6 +71,7 @@ export class CoffeeController {
         imageUrl:item.imageUrl,
         price:item.price,
         volume:item.volume,
+        location:item.location,
         createAt:item.createAt,
       })) 
     }
@@ -89,6 +92,7 @@ export class CoffeeController {
         imageUrl:data.data?.imageUrl,
         price:data.data?.price,
         volume:data.data?.volume,
+        location:data.data?.location,
         createAt:data.data?.createAt,
       }
     }

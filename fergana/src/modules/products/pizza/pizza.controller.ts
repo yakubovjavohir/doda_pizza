@@ -19,7 +19,6 @@ export class PizzaController {
 
   @GrpcMethod('PizzaService', 'Create')
   async create(dto: PizzaEntity): Promise<{ meta: any; data: any }> {
-    
     let fixPrice: number | null = 0
     let price: number | null = 0
 
@@ -58,6 +57,7 @@ export class PizzaController {
       disavailabletoppings:disTopp.length === 0 ? null : disTopp,
       pepper:dto.pepper,
       imageUrl:dto.imageUrl,
+      location:dto.location,
       topping:dto.topping
     }
     const pizzaEntity = Object.assign(new PizzaEntity(), changeData);
@@ -119,6 +119,7 @@ export class PizzaController {
         pepper:element.pepper,
         variants:element.tt,
         topping:element.topping,
+        location:element.location,
         createAt:element.createAt,
         updateAt:element.updateAt
       }))
@@ -160,6 +161,7 @@ export class PizzaController {
           imageUrl:data?.imageUrl,
           variants:data?.tt,
           topping:data?.topping,
+          location:data?.location,
           createAt:data?.createAt,
           updateAt:data?.updateAt
         }

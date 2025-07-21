@@ -41,6 +41,12 @@ export class PizzaEntity{
     @OneToMany(() => TTEntity, (tt) => tt.pizza)
     tt: TTEntity[];
 
+    @Column({default: false, nullable: true})
+    newItem:boolean
+
+    @Column({type:String})
+    location:string
+
     @CreateDateColumn()
     createAt:Date
 

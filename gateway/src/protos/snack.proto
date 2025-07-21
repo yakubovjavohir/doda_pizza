@@ -27,6 +27,7 @@ message CreateSnack {
   bool pepper = 6;
   int32 price = 7;
   string imageUrl = 8;
+  string location = 9;
 }
 
 message IMeta {
@@ -57,6 +58,7 @@ message Data {
   string imageUrl = 9;
   repeated Volume volume = 10;
   string createAt = 11;
+  string location = 12;
 }
 
 message ResData {

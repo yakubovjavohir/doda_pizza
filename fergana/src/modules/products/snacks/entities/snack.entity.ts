@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, Ba
 import { ID } from 'src/common/types';
 import { VolumesEntity } from '../../mini-data/volumes/entities/volume.entity';
 import { IDisavaileabletoppings } from '../../pizza/interface/disavailabletoppings';
+import { ToppingEntity } from '../../toppings/entities/topping.entity';
 
 @Entity('snacks')
 export class SnackEntity{
@@ -32,8 +33,17 @@ export class SnackEntity{
   @Column({type: 'decimal', default:null, nullable:true})
   price:number | null
 
+  @Column({type: 'jsonb', default: [], nullable:true})  
+  topping: ToppingEntity[];
+
   @OneToMany(() => VolumesEntity, (volume) => volume.snack)
   volume: VolumesEntity[];
+  
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
 
   @CreateDateColumn()
   createAt: Date;

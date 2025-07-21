@@ -16,34 +16,25 @@ export class SnacksService {
     this.snackService = this.client.getService<ISnackService>('SnackService');
   }
   async create(dto: CreateSnackDto) {
-    const data = await lastValueFrom(this.snackService.Create(dto));
+    const dtoChange = {
+      ...dto,
+      location:"fergana"
+    }
+    const data = await lastValueFrom(this.snackService.Create(dtoChange));
     
-    let fixPrice2: number | null = 0
-    let price2: number | null = 0
-
-
-    if(Number(data.data.fixedprice) === 0){
-      fixPrice2 = null
-    } else {
-      fixPrice2 = Number(data.data.fixedprice)
-    }
-    if(data.data.price === 0){
-      price2 = null
-    } else {
-      price2 = data.data.price
-    }
 return {
     meta: data.meta,
     data: {
       id: data.data.id,
       name: data.data.name,
       description: data.data.description,
-      fixed__price: fixPrice2,
+      fixed__price: data.data.fixedprice === 0 ? null : data.data.fixedprice,
       vegetarian: data.data.vegetarian,
       pepper: data.data.pepper,
-      dis_available_toppings: data.data.disavailabletoppings,
-      price:price2,
+      dis_available_toppings: data.data.disavailabletoppings ?? [],
+      price:data.data.price === 0 ? null : data.data.price,
       url:data.data.imageUrl,
+      location:data.data.location,
       createAt: data.data.createAt,
     }
   }
@@ -52,7 +43,6 @@ return {
   
   async findAll() {
     const result = await lastValueFrom(this.snackService.FindAll({}));
-    console.log('------', result);
     
   const data = {
     meta: result.meta,
@@ -64,9 +54,10 @@ return {
       vegetarian: element.vegetarian,
       pepper: element.pepper,
       price:element.price === 0 ? null : element.price,
-      dis_available_toppings: element.disavailabletoppings,
       url:element.imageUrl,
+      dis_available_toppings: element.disavailabletoppings ?? [],
       variants: element.volume,
+      location:element.location,
       createAt: element.createAt,
     })),
   };
@@ -99,9 +90,11 @@ return {
     fixed__price: fixPrice2,
     vegetarian: data.data.vegetarian,
     pepper: data.data.pepper,
-    dis_available_toppings: data.data.disavailabletoppings,
+    dis_available_toppings: data.data.disavailabletoppings ?? [],
     price:price2,
     url:data.data.imageUrl,
+    topping:data.data.topping,
+    location:data.data.location,
     createAt: data.data.createAt,
   }
 }

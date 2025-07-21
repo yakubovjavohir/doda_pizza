@@ -1,13 +1,106 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsArray, IsInt, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
 import { ID } from "src/common/TYPES";
+
+export class Volume {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id:ID
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    size:string
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    imageUrl:string
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    type:string
+
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    weight:number
+
+    @ApiProperty()
+    @IsInt()
+    @IsOptional()
+    price:number
+}
+
+export class ToppingsPrices {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id:ID
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    sm:string
+
+    @ApiProperty()
+    @IsInt()
+    @IsOptional()
+    price:number
+}
+
+export class Toppings {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id:ID
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    name:string
+
+    @ApiProperty()
+    @IsObject()
+    @IsOptional()
+    toppingPrices:ToppingsPrices
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    imageUrl:string
+}
+
+export class DisableToppings {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    id:ID
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    name:string
+}
 
 export class Item {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    productid:ID
+    id:ID
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    name:string
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    imageUrl:string
 
     @ApiProperty()
     @IsString()
@@ -22,22 +115,20 @@ export class Item {
     @ApiProperty()
     @IsInt()
     @IsOptional()
-    price?:number
+    productTotalPrice?:number
 
     @ApiProperty()
-    @IsArray()
+    @IsObject()
     @IsOptional()
-    variants?:ID[]
+    variant?:Volume
 
     @ApiProperty()
-    @IsArray()
     @IsOptional()
-    toppings?:ID[]
+    toppings?:Toppings[]
 
     @ApiProperty()
-    @IsArray()
     @IsOptional()
-    tt?:ID[]
+    disabledToppings?:DisableToppings[]
 }
 
 export class CreateOrderDto {

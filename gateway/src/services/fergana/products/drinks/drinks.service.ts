@@ -42,6 +42,7 @@ return {
       gaz:dto.gaz,
       price:price2,
       url:data.data.imageUrl,
+      location:data.data.location,
       createAt: data.data.createAt,
       updateAt: data.data.updateAt,
     }
@@ -61,7 +62,8 @@ return {
       price:element.price === 0 ? null : element.price,
       url:element.imageUrl,
       gaz:element.gaz,
-      variants:element.volume,
+      variants:element.variants,
+      location:element.location,
       createAt: element.createAt,
       updateAt: element.updateAt,
     })),
@@ -98,7 +100,8 @@ return {
       gaz:data.data.gaz,
       price:price2,
       url:data.data.imageUrl,
-      variants:data.data.volume,
+      variants:data.data.variants,
+      location:data.data.location,
       createAt: data.data.createAt,
       updateAt: data.data.updateAt,
     }

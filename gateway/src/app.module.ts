@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ProfileModule } from './services/profile/profile.module';
 import { ToppingsModule } from './services/fergana/products/toppings/toppings.module';
 import { PizzaModule } from './services/fergana/products/pizza/pizza.module';
 import { staticModule } from './common/config/uploads';
@@ -23,7 +22,6 @@ import { IdValidationModule } from './services/fergana/products/id-validation/id
 @Module({
   imports: [
     staticModule,
-    ProfileModule,
     AuthModule,
     ToppingsModule,
     PizzaModule,
@@ -41,7 +39,7 @@ import { IdValidationModule } from './services/fergana/products/id-validation/id
     MilkshakesModule,
     BreakfastModule,
     KidsFaveModule,
-    IdValidationModule
+    IdValidationModule,
   ],
 })
 export class AppModule {}

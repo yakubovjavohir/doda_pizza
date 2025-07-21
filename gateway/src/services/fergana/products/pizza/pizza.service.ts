@@ -7,6 +7,7 @@ import { ID } from 'src/common/TYPES';
 import { lastValueFrom } from 'rxjs';
 import { ToppingsService } from '../toppings/toppings.service';
 import { ToppingData } from '../toppings/interface/toppings.service';
+import { ResData } from 'src/lib/resdata';
 
 @Injectable()
 export class PizzaService {
@@ -19,14 +20,21 @@ export class PizzaService {
     this.pizzaService = this.client.getService<IPizzaService>('PizzaService');
   } 
   async create(dto: CreatePizzaDto) {
-    const data = await lastValueFrom(this.pizzaService.Create(dto));
+    const dtoChange = {
+      ...dto,
+      location:"fergana"
+    }
+    const data = await lastValueFrom(this.pizzaService.Create(dtoChange));
 
     let toppingData : ToppingData[] = []
     for (let i = 0; i < dto.topping.length; i++) {
       const id = dto.topping[i];
       const topping = await this.toppingService.findOne(id)
       if(topping.data){
-        toppingData.push(topping.data)
+        toppingData.push({
+          ...topping.data,
+          imageUrl: topping.data.url
+        })
       }
     }
     
@@ -53,10 +61,11 @@ return {
       fixed__price: fixPrice2,
       vegetarian: data.data.vegetarian,
       pepper: data.data.pepper,
-      dis_available_toppings: data.data.disavailabletoppings,
+      dis_available_toppings: data.data.disavailabletoppings ?? [],
       price:price2,
-      url:data.data.imageUrl,
+      url:data.data.url,
       toppings:toppingData,
+      location:data.data.location,
       createAt: data.data.createAt,
       updateAt: data.data.updateAt,
     }
@@ -65,8 +74,7 @@ return {
 
   async findAll() {
     const result = await lastValueFrom(this.pizzaService.FindAll({}));
-    console.log('🍕 GRPC PizzaService result:', result);
-  
+    
     const allData: PizzaData[] = [];
   
     if (!result?.data || !Array.isArray(result.data)) {
@@ -75,23 +83,42 @@ return {
         data: [],
       };
     }
+
+
   
     for (const element of result.data) {
       const toppingData: ToppingData[] = [];
-  
+      if(element.topping && element.topping.length > 0){
+        for (let i = 0; i < element.topping.length; i++) {
+          const id = element.topping[i] as unknown as ID
+          const {data} = await this.toppingService.findOne(id)
+          toppingData.push({
+            id:data.id,
+            name:data.name,
+            imageUrl:data.url, 
+            prices:data.prices,
+            createAt:data.createAt,
+            type:data.type,
+            updateAt:data.updateAt
+          })
+        }
+      }
+
+      
+      
       const pizzaData: PizzaData = {
         id: element.id,
         name: element.name ?? '',
         description: element.description ?? '',
         fixedprice: element.fixedprice ?? null,
         price: element.price ?? null,
-        imageUrl: element.imageUrl ?? '',
-        url: element.imageUrl ?? '',
+        url: element.url ?? '',
         disavailabletoppings: element.disavailabletoppings ?? [],
         vegetarian: element.vegetarian ?? false,
         pepper: element.pepper ?? false,
         variants: element.variants ?? [],
         topping: toppingData,
+        location: element.location,
         createAt: element.createAt ?? new Date(),
         updateAt: element.updateAt ?? new Date(),
       };
@@ -99,7 +126,8 @@ return {
       allData.push(pizzaData);
     }
     
-    return result
+    const resdata = new ResData<PizzaData[]>(200, "PIZZA DATA", allData)
+    return resdata
   }
   
   
@@ -115,7 +143,10 @@ return {
       const id = data.data.topping[i].id as ID;
       const topping = await this.toppingService.findOne(id)
       if(topping.data){
-        toppingData.push(topping.data)
+        toppingData.push({
+          ...topping.data,
+          imageUrl: topping.data.url
+        })
       }
     }
 
@@ -145,9 +176,9 @@ return {
       fixed__price: fixPrice2,
       vegetarian: data.data.vegetarian,
       pepper: data.data.pepper,
-      dis_available_toppings: data.data.disavailabletoppings,
+      dis_available_toppings: data.data.disavailabletoppings ?? [],
       price:price2,
-      url:data.data.imageUrl,
+      url:data.data.url,
       variants: data.data.variants,
       toppings:toppingData,
       createAt: data.data.createAt,

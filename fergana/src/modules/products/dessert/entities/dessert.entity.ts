@@ -27,7 +27,13 @@ export class DessertEntity{
   price:number | null
 
   @OneToMany(() => VolumesEntity, (volume) => volume.dessert)
-  volume: VolumesEntity[];  
+  volume: VolumesEntity[]; 
+  
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
 
   @CreateDateColumn()
   createAt: Date;

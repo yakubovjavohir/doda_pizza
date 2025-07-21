@@ -29,6 +29,17 @@ export class PricesService {
   }
 
   async findOne(id:ID){
-    return await lastValueFrom(this.pricesService.FindOne({id}))
+    const data = await lastValueFrom(this.pricesService.FindOne({id}))
+    return {
+      meta:data.meta,
+      data:{
+        id:data.data.id,
+        size:data.data.size,
+        topping:data.data.topping,
+        price:data.data.price,
+        createAt:data.data.createAt,
+        updateAt:data.data.updateAt
+      }
+    }
   }
 }

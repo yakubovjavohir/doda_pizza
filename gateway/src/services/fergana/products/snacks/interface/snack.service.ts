@@ -35,6 +35,8 @@ export interface SnackData {
     disavailabletoppings:string[]
     pepper:boolean
     variants:Volume[]
+    topping:[]
+    location:"fergana" | "tashkent"
     createAt:string
 }
 export interface Meta {

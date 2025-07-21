@@ -22,6 +22,7 @@ message CreateSauces {
   int32 price = 3;
   string imageUrl = 4;
   int32 fixedprice = 5;
+  string location = 6;
 }
 
 message IMeta {
@@ -48,6 +49,7 @@ message Data {
   string imageUrl = 6;
   int32 fixedprice = 7;
   string createAt = 8;
+  string location = 9;
 }
 
 message ResData {

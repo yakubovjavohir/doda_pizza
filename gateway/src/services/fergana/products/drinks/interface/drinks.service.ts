@@ -23,7 +23,6 @@ export interface Volume {
 }
 
 export interface DrinksData {
-    volume: any;
     meta: any;
     data: any;
     imageUrl: any;
@@ -36,6 +35,7 @@ export interface DrinksData {
     vegetarian:boolean
     gaz:boolean
     variants:Volume[]
+    location:"fergana" | "tashkent"
     createAt:string
     updateAt:string
 }

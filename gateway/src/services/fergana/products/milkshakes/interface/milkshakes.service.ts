@@ -22,7 +22,6 @@ export interface Volume {
 }
 
 export interface MilkshakesData {
-    volume: any;
     meta: any;
     data: any;
     imageUrl: any;
@@ -33,6 +32,7 @@ export interface MilkshakesData {
     url:string
     fixedprice:number | null
     variants:Volume[]
+    location:"fergana" | "tashkent"
     createAt:string
 }
 export interface Meta {

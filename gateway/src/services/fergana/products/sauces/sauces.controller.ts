@@ -9,6 +9,10 @@ export class SaucesController {
 
   @Post()
   create(@Body() createSauceDto: CreateSaucesDto) {
+    const dto = {
+      ...createSauceDto,
+      location:"fergana"
+    }
     return this.saucesService.create(createSauceDto);
   }
 

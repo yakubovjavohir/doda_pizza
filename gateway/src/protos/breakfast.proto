@@ -28,6 +28,7 @@ message CreateBreakfast {
   int32 fixedprice = 5;
   repeated string disavailabletoppings = 6;
   bool vegetarian = 7;
+  string location = 8;
 }
 
 message IMeta {
@@ -56,7 +57,8 @@ message Data {
   int32 fixedprice = 7;
   repeated DisTopp disavailabletoppings = 8;
   bool vegetarian = 9;
-  string createAt = 10;
+  string location = 10;
+  string createAt = 11;
 }
 
 message ResData {

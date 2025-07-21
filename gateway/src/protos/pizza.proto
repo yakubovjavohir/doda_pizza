@@ -51,6 +51,7 @@ message CreatePizza {
   bool vegetarian = 7;
   bool pepper = 8; 
   repeated string topping = 9;
+  string location = 10;
 }
 
 message IMeta {
@@ -72,6 +73,7 @@ message Data {
   repeated string topping = 11;
   string createAt = 12;
   string updateAt = 13;
+  string location = 14;
 }
 
 message ResDataList {

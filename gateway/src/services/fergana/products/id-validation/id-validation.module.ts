@@ -11,6 +11,7 @@ import { VolumesModule } from '../mini-data/volumes/volumes.module';
 import { TTModule } from '../mini-data/t-t/t-t.module';
 import { ToppingsModule } from '../toppings/toppings.module';
 import { IdValidationService } from './id-validation.service';
+import { PricesModule } from '../mini-data/prices/prices.module';
 
 @Module({
   imports:[
@@ -24,7 +25,9 @@ import { IdValidationService } from './id-validation.service';
     KidsFaveModule,
     forwardRef(() => VolumesModule), 
     forwardRef(() => TTModule), 
-    forwardRef(() => ToppingsModule)],
+    forwardRef(() => ToppingsModule),
+    PricesModule
+  ],
   providers: [IdValidationService],
   exports:[IdValidationService]
 })

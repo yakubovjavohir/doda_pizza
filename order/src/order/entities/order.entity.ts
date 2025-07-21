@@ -1,13 +1,34 @@
 import { ID } from 'src/common/types';
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
 export interface Item {
-  productid:ID
-  type:string
-  quantity:number
-  price:number
-  variants:ID[]
-  topping:ID[]
-  tt:ID[]
+  type: string;
+  id: string;
+  name: string;
+  imageUrl: string;
+  quantity: number;
+  productTotalPrice: number;
+  variant?: {
+      id: string;
+      type?: "thin" | "traditional" | string;
+      size?: string;
+      weight?: number;
+      price?: number;
+      imageUrl?: string;
+  } | null;
+  toppings?: {
+      id: string;
+      name: string;
+      toppingPrices: {
+        id:string,
+        sm:string,
+        price:number,
+      },
+      imageUrl:string
+  }[] | null;
+  disabledToppings?: {
+      id: string;
+      name: string;
+  }[] | null;
 }
 @Entity('order')
 export class OrderEntity {
@@ -22,6 +43,7 @@ export class OrderEntity {
 
   @Column({ default: 'pending' })
   status: 'pending' | 'paid' | 'delivered';
+  
   @Column()
   address:string
 

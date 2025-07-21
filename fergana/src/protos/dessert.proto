@@ -29,6 +29,7 @@ message CreateDessert {
   int32 fixedprice = 5;
   repeated string disavailabletoppings = 6;
   bool vegetarian = 7;
+  string location = 8;
 }
 
 message IMeta {
@@ -58,6 +59,7 @@ message Data {
   repeated DisTopp disavailabletoppings = 8;
   bool vegetarian = 9;
   string createAt = 10;
+  string location = 11;
 }
 
 message ResData {

@@ -5,16 +5,22 @@ import { SnackEntity } from './entities/snack.entity';
 import { ID } from 'src/common/types';
 import { IDisavaileabletoppings } from '../pizza/interface/disavailabletoppings';
 import { v4 } from 'uuid';
+import { ToppingsService } from '../toppings/toppings.service';
+import { ToppingEntity } from '../toppings/entities/topping.entity';
 
 @Controller()
 export class SnacksController {
   constructor(
     @Inject('ISnacksService')
-    private readonly snacksService: SnacksService
+    private readonly snacksService: SnacksService,
+
+    @Inject('IToppingService')
+    private readonly toppingService: ToppingsService
   ) {}
 
   @GrpcMethod('SnackService', 'Create')
   async create(dto: SnackEntity) {
+    console.log(dto);
     
     let fixPrice: number | null = 0
     let price: number | null = 0
@@ -45,6 +51,18 @@ export class SnacksController {
     }
     
 
+    const topping:any = []
+
+
+    if (dto.topping && dto.topping.length > 0) {
+      for (let i = 0; i < dto.topping.length; i++) {
+        const id = dto.topping[i] as unknown as ID
+        const data = await this.toppingService.findOne(id)
+        topping.push(data)
+      }
+    }
+    
+
     
 
     const changeData = {
@@ -57,6 +75,8 @@ export class SnacksController {
       disavailabletoppings:disTopp.length === 0 ? null : disTopp,
       pepper:dto.pepper,
       imageUrl:dto.imageUrl,
+      location:dto.location,
+      topping:topping
     }
     const snackEntity = Object.assign(new SnackEntity(), changeData);
     
@@ -79,6 +99,15 @@ export class SnacksController {
       price2 = data?.price ?? null
     }
 
+    const toppingId:string[] = []
+
+    if(data?.topping && data?.topping.length > 0){
+      for (let index = 0; index < data?.topping.length; index++) {
+        const id = data?.topping[index].id as unknown as ID
+        toppingId.push(id)
+      }
+    }
+
     const changeData2 = {
         meta:resdata.meta,
         data:{
@@ -90,6 +119,7 @@ export class SnacksController {
           price:price2,
           disavailabletoppings:data?.disavailabletoppings,
           pepper:data?.pepper,
+          topping:toppingId.length > 0 ? toppingId : [],
           imageUrl:data?.imageUrl,
           createAt:data?.createAt,
         }
@@ -114,6 +144,8 @@ export class SnacksController {
           vegetarian: element.vegetarian,
           pepper: element.pepper,
           imageUrl: element.imageUrl,
+          topping:element.topping,
+          location:element.location,
           volume: element.volume,
           createAt: element.createAt,
         }))
@@ -156,6 +188,7 @@ export class SnacksController {
           disavailabletoppings:data?.disavailabletoppings,
           pepper:data?.pepper,
           imageUrl:data?.imageUrl,
+          location:data?.location,
           createAt:data?.createAt,
         }
     }

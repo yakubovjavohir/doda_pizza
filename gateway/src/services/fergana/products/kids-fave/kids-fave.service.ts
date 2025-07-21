@@ -21,8 +21,11 @@ export class KidsFaveService implements OnModuleInit {
     }
 
     async create(dto: CreateKidsFaveDto) {
-        const data = await lastValueFrom(this.kidsFaveService.Create(dto));
-        console.log(1);
+        const dtoChange = {
+            ...dto,
+            location:"fergana"
+        }
+        const data = await lastValueFrom(this.kidsFaveService.Create(dtoChange));
         
         return {
             meta: data.meta,
@@ -32,6 +35,7 @@ export class KidsFaveService implements OnModuleInit {
                 spicy: data.data.spicy,
                 kidsFriendly: data.data.kidsFriendly,
                 recommendedAge: data.data.recommendedAge,
+                location:data.data.location,
                 createAt: data.data.createAt
             }
         };
@@ -49,6 +53,7 @@ export class KidsFaveService implements OnModuleInit {
                 kidsFriendly: element.kidsFriendly,
                 recommendedAge: element.recommendedAge,
                 product:element.product,
+                location:element.location,
                 createAt: element.createAt
             }))
         };
@@ -66,6 +71,7 @@ export class KidsFaveService implements OnModuleInit {
                 kidsFriendly: data.data.kidsFriendly,
                 recommendedAge: data.data.recommendedAge,
                 product:data.data.product,
+                location:data.data.location,
                 createAt: data.data.createAt
             }
         };

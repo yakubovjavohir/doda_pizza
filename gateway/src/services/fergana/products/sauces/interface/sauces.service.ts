@@ -22,7 +22,6 @@ export interface Volume {
 }
 
 export interface SaucesData {
-    volume: any;
     meta: any;
     data: any;
     imageUrl: any;
@@ -33,6 +32,7 @@ export interface SaucesData {
     url:string
     fixedprice:number | null
     variants:Volume[]
+    location:"fergana" | "tashkent"
     createAt:string
 }
 export interface Meta {

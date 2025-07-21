@@ -45,6 +45,7 @@ export class SaucesController {
         price:el.price === null ? 0 : el.price,
         volume:el.volume,
         imageUrl:el.imageUrl,
+        location:el.location,
         createAt:el.createAt
       }))
     }
@@ -62,6 +63,7 @@ export class SaucesController {
         fixedprice:data?.fixedprice === null ? 0 : data?.fixedprice,
         price:data?.price === null ? 0 : data?.price,
         volume:data?.volume,
+        location:data?.location,
         createAt:data?.createAt
       }
     }

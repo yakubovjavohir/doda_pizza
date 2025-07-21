@@ -103,6 +103,7 @@ export class BreakfastController{
         price:element.price === null ? 0 : element.price,
         vegetarianf:element.vegetarian,
         createAt:element.createAt,
+        location:element.location,
         volume:element.volume
       }))
     }
@@ -125,6 +126,7 @@ export class BreakfastController{
         price:data?.price === null ? 0 : data?.price,
         disavailabletoppings:data?.disavailabletoppings,
         volume:data?.volume,
+        location:data?.location,
         createAt:data?.createAt
       } as BreakfastEntity
     }

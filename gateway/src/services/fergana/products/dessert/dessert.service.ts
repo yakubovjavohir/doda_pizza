@@ -42,6 +42,7 @@ return {
       dis_available_toppings: data.data.disavailabletoppings,
       price:price2,
       url:data.data.imageUrl,
+      location:"fergana",
       createAt: data.data.createAt,
       updateAt: data.data.updateAt,
     }
@@ -63,7 +64,8 @@ return {
       dis_available_toppings: element.disavailabletoppings,
       url:element.imageUrl,
       pepper:null,
-      varinats:element.volume,
+      varinats:element.variants,
+      location:element.location,
       createAt: element.createAt,
     })),
   };
@@ -84,6 +86,7 @@ return {
       dis_available_toppings: data.disavailabletoppings,
       price:data.price === 0 ? null : data.price,
       url:data.imageUrl,
+      location:data.location,
       createAt: data.createAt,
       updateAt: data.updateAt,
     }

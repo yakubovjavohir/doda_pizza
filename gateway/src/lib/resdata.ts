@@ -18,10 +18,10 @@ export class ResData<T>{
 
 
 export class ProductNotFound {
-    constructor(id:ID, name:string){
+    constructor(id:ID, type:string){
         return {
             statusCode:404,
-            message:`this ${id} id ${name} not found`
+            message:`this id = ${id}, type ${type} product not found`
         }
     }
 }

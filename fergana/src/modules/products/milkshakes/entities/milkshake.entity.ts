@@ -25,6 +25,12 @@ export class MilkshakesEntity {
   @OneToMany(() => VolumesEntity, (volume) => volume.milkshakes)
   volume: VolumesEntity[];  
 
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
+
   @CreateDateColumn()
   createAt: Date;
 }

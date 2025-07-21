@@ -24,7 +24,6 @@ export interface Volume {
 
 export interface CoffeeData {
     imageUrl: any;
-    volume:any,
     id:ID
     name:string
     description:string
@@ -33,6 +32,7 @@ export interface CoffeeData {
     fixedprice:number | null
     variants:Volume[]
     topping:Topping[]
+    location:"fergana" | "tasheknt"
     createAt:string
 }
 export interface Meta {

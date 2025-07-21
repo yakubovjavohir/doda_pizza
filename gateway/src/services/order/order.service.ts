@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { ORDER_SERVICE_ORDER_MODULE } from 'src/common/config/service.name';
-import { IOrderService } from './interface/order.service';
+import { Data, IOrderService } from './interface/order.service';
 import { ClientGrpc } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
 import { IdValidationService } from '../fergana/products/id-validation/id-validation.service';
-import { ID } from 'src/common/TYPES';
 
 @Injectable()
 export class OrderService {
@@ -18,26 +17,28 @@ export class OrderService {
     this.orderService = this.client.getService<IOrderService>('OrderService');
   }
   async create(dto:CreateOrderDto){
-    const changeData = {
+    const changeData: Data = {
+      id: '',
+      createAt: '',
       user: dto.user,
       totalprice: dto.totalprice,
       address: dto.address,
       status: dto.status,
       items: dto.items.map(item => ({
-        productid: item.productid,
+        id: item.id,
         type: item.type,
+        name: item.name,
         quantity: item.quantity || 0,
-        price: item.price || 0,
-        variants: item.variants?.length === 0 ? [] : item.variants as ID[],
-        toppings: item.toppings?.length === 0 ? [] : item.toppings as ID[],
-        tt: item.tt?.length === 0 ? [] : item.tt as ID[]
+        productTotalPrice: item.productTotalPrice || 0,
+        variant: item.variant,
+        toppings: item.toppings?.length === 0 ? [] : null,
+        imageUrl: item.imageUrl,
+        disableToppings: item.disabledToppings ?? null
       }))
     }
     
     // this is totalprice validation
     const data = await lastValueFrom(this.orderService.Create(changeData))
-    console.log('---', data);
-    
     return data
   }
 
@@ -54,13 +55,14 @@ export class OrderService {
         address:item.address,
         status:item.status,
         items:item.items.map(item => ({
-          productid:item.productid,
+          id:item.id,
           type:item.type,
+          name:item.name,
           quantity:item.quantity,
-          price:item.price,
-          variants:item.variants === null ? [] : item.variants,
-          toppings:item.toppings === null ? [] : item.toppings,
-          tt:item.tt === null ? [] : item.tt
+          productTotalPrice:item.productTotalPrice,
+          variant:item.variant,
+          toppings:item.toppings || null,
+          disableToppings:item.disableToppings || null
         }))
       }))
     }

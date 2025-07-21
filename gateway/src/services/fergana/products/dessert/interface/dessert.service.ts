@@ -23,7 +23,6 @@ export interface Volume {
 }
 
 export interface DessertData {
-    volume: any;
     meta: any;
     data: any;
     imageUrl: any;
@@ -37,6 +36,7 @@ export interface DessertData {
     disavailabletoppings:string[]
     vegetarian:boolean
     variants:Volume[]
+    location:"fergana" | "tashkent"
     createAt:string
     updateAt:string
 }

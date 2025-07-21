@@ -21,13 +21,13 @@ export interface PizzaData {
     description:string
     price:number | null
     url:string
-    imageUrl:string
     fixedprice:number | null
     disavailabletoppings:string[]
     vegetarian:boolean
     pepper:boolean
     variants:TTData[]
-    topping:Topping[]       
+    topping:Topping[] 
+    location:"fergana" | "tashkent"      
     createAt:string
     updateAt:string
 }

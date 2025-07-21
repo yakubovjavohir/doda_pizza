@@ -23,6 +23,7 @@ message CreateCoffee {
   string imageUrl = 4;
   int32 fixedprice = 5;
   repeated string topping = 6;
+  string location = 7;
 }
 
 message IMeta {
@@ -51,6 +52,7 @@ message Data {
   int32 fixedprice = 7;
   string createAt = 8;
   repeated string topping = 9;
+  string location = 10;
 }
 
 message ResData {

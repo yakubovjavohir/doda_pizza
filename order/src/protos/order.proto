@@ -11,15 +11,42 @@ service OrderService {
 
 message Fail {}
 
+message Volume {
+  string id = 1;
+  string type = 2;
+  string size = 3;
+  int32 weight = 4;
+  int32 price = 5;
+  string imageUrl = 6;
+}
+
+message ToppingsPrices {
+  string id = 1;
+  string sm = 2;
+  int32 price = 3;
+}
+
+message Topping {
+  string id = 1;
+  string name = 2;
+  ToppingsPrices toppingPrices = 3;
+  string imageUrl = 4;
+}
+
+message DisabledToppings {
+  string id = 1;
+  string name = 2;
+}
 
 message OrderItem {
-  string productid = 1;
-  int32 quantity = 2;
-  int32 price = 3;
-  string type = 4;
-  repeated string toppings = 5;
-  repeated string variants = 6;
-  repeated string tt = 7;
+  string type = 1;
+  string id = 2;
+  string name = 3;
+  int32 quantity = 4;
+  int32 productTotalPrice = 5;
+  Volume variant = 6;
+  repeated Topping topping = 7;
+  repeated DisabledToppings disabledToppings = 8;
 }
 
 message CreateOrder {

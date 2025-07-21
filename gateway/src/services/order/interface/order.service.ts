@@ -9,15 +9,42 @@ export interface IOrderService {
 export interface Fail {}
 
 
+export interface Volume {
+        id: string;
+        type?: "thin" | "traditional" | string;
+        size?: string;
+        weight?: number;
+        price?: number;
+}
+
+
+export interface Topping {
+        id: string;
+        name: string;
+        toppingPrices: {
+          id:string,
+          sm:string,
+          price:number,
+        },
+        imageUrl:string
+}
+
+export interface DisableToppings {
+    id: string;
+    name: string;
+}
+
 
 export interface Item {
-    productid:ID
-    type:string
-    quantity?:number | null
-    price:number 
-    variants?:ID[]
-    toppings?:ID[]
-    tt:ID[]
+    type: string;
+    id: string;
+    name: string;
+    imageUrl: string;
+    quantity: number;
+    productTotalPrice: number;
+    variant?:Volume | null
+    toppings?:Topping[] | null
+    disableToppings:DisableToppings[] | null
 }
 
 export interface CreateOrder {

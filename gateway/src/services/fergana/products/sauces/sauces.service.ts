@@ -16,7 +16,11 @@ export class SaucesService {
     this.saucesService = this.client.getService<ISaucesService>('SaucesService');
   }
  async create(dto: CreateSaucesDto) {
-    const data = await lastValueFrom(this.saucesService.Create(dto));
+  const dtoChange = {
+    ...dto,
+    location:"fergana"
+  }
+    const data = await lastValueFrom(this.saucesService.Create(dtoChange));
     let fixPrice2: number | null = 0
     let price2: number | null = 0
 
@@ -40,6 +44,7 @@ return {
       fixed__price: fixPrice2,
       price:price2,
       url:data.data.imageUrl,
+      location:data.data.location,
       createAt: data.data.createAt,
     }
   }
@@ -58,7 +63,8 @@ return {
       fixed__price: element.fixedprice === 0 ? null : element.fixedprice,
       price:element.price === 0 ? null : element.price,
       url:element.imageUrl,
-      variants:element.volume,
+      variants:element.variants,
+      location:element.location,
       createAt: element.createAt,
     })),
   };
@@ -92,7 +98,8 @@ return {
       fixed__price: fixPrice2,
       price:price2,
       url:data.data.imageUrl,
-      variants:data.data.volume,
+      variants:data.data.variants,
+      location:data.data.location,
       createAt: data.data.createAt,
     }
   }

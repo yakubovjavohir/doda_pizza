@@ -21,6 +21,12 @@ export class KidsFaveEntity {
   @Column({ type: 'int', nullable: true })
   recommendedAge: number;
 
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
+
   @CreateDateColumn()
   createAt: Date;
 }

@@ -29,6 +29,12 @@ export class CoffeeEntity {
   @Column({type: 'jsonb', default: [], nullable:true})  
   topping: ToppingEntity[];
 
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
+
   @CreateDateColumn()
   createAt: Date;
   product: any;

@@ -87,6 +87,7 @@ export class DessertController {
           vegetarian: element.vegetarian,
           imageUrl: element.imageUrl,
           volume: element.volume,
+          location:element.location,
           createAt: element.createAt,
         }))
       : [],
@@ -110,6 +111,7 @@ export class DessertController {
         price:data.data?.price === null ? 0 : data.data?.price,
         imageUrl:data?.data?.imageUrl,
         createAt:data?.data?.createAt,
+        location:data.data?.location,
         volume:data.data?.volume
       }
   }

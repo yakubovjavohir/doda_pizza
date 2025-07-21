@@ -21,6 +21,7 @@ message CreateKidsFave {
   bool spicy = 3;
   bool kidsFriendly = 4;
   int32 recommendedAge = 5;
+  string location = 6;
 }
 
 message IMeta {
@@ -36,6 +37,7 @@ message Data {
   bool kidsFriendly = 5;
   int32 recommendedAge = 6;
   string createAt = 7;
+  string location = 8;
 }
 
 message ResData {

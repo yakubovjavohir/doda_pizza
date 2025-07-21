@@ -46,7 +46,7 @@ export class ToppingsController {
 
   @Post()
   create(@Body() dto: CreateToppingDto) {
-    dto.imageUrl = this.imageUrl
+    // dto.imageUrl = this.imageUrl
     return this.toppingsService.create(dto);
   }
 

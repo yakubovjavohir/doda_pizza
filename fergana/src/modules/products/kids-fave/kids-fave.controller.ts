@@ -61,7 +61,8 @@ export class KidsFaveController {
       spicy: dto.spicy,
       kidsFriendly: dto.kidsFriendly,
       recommendedAge: dto.recommendedAge,
-      product: product
+      product: product,
+      location: dto.location
     } as KidsFaveEntity
     return this.kidsFaveService.create(changeData);
   }

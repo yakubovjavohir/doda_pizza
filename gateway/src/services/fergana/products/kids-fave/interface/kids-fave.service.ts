@@ -21,6 +21,7 @@ export interface KidsFaveData {
     kidsFriendly: boolean
     recommendedAge: number
     product:any,
+    location:"fergana" | "tashkent"
     createAt: string
 }
 

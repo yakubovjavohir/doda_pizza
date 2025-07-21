@@ -69,6 +69,7 @@ return {
       price:price2,
       url:data.data.imageUrl,
       topping:toppingData,
+      location:"fergana",
       createAt: data.data.createAt,
     }
   }
@@ -103,8 +104,8 @@ return {
         url: element.imageUrl,
         topping: toppingData,
         createAt: element.createAt,
-        variants: element.volume,
-        volume:null
+        variants: element.variants,
+        location:element.location
       };
       allData.push(coffeeData);
       }
@@ -174,9 +175,10 @@ const coffeeData = {
       fixed__price: fixPrice2,
       price:price2,
       url:data.data.imageUrl,
-      varinats:data.data.volume,
+      varinats:data.data.variants,
       volume:null,
       topping:toppingData,
+      location:data.data.location,
       createAt: data.data.createAt,
     }
   }

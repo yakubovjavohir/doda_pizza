@@ -32,6 +32,9 @@ export class TTEntity {
     @OneToMany(() => FactsEntity, (facts) => facts.tt)
     facts: FactsEntity[];
 
+    @Column({default: false, nullable: true})
+    newItem:boolean
+
     @CreateDateColumn()
     createAt:Date
 

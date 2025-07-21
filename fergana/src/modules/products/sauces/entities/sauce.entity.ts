@@ -25,6 +25,12 @@ export class SaucesEntity {
   @OneToMany(() => VolumesEntity, (volume) => volume.sauces)
   volume: VolumesEntity[];  
 
+  @Column({default: false, nullable: true})
+  newItem:boolean
+
+  @Column({type:String})
+  location:string
+
   @CreateDateColumn()
   createAt: Date;
 }

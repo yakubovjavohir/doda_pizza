@@ -28,7 +28,7 @@ export class ToppingsService {
           id:items.id,
           name:items.name,
           type:items.type,
-          imageUrl:items.imageUrl,
+          url:items.imageUrl,
           prices:items.prices,
           createAt:items.createAt,
         }
@@ -44,7 +44,7 @@ export class ToppingsService {
         id: result.data.id,
         name: result.data.name,
         type: result.data.type,
-        imageUrl: result.data.imageUrl,
+        url: result.data.imageUrl,
         prices: result.data.prices,
         createAt: result.data.createAt,
         updateAt: result.data.updateAt,

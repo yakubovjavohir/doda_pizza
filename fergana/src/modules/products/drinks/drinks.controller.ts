@@ -3,6 +3,7 @@ import { GrpcMethod } from '@nestjs/microservices';
 import { DrinksService } from './drinks.service';
 import { DrinkEntity } from './entities/drink.entity';
 import { ID } from 'src/common/types';
+import { elementAt } from 'rxjs';
 
 @Controller()
 export class DrinksController {
@@ -69,6 +70,7 @@ export class DrinksController {
         price:element.price === null ? 0 : element.price,
         imageUrl:element.imageUrl,
         volume:element.volume,
+        location:element.location,
         createAt:element.createAt
       }))
     }
@@ -90,6 +92,7 @@ export class DrinksController {
         fixedprice:oneData?.fixedprice === null ? 0 : oneData?.fixedprice,
         price:oneData?.price === null ? 0 : oneData?.price,
         volume:oneData?.volume,
+        location:oneData?.location,
         createAt:oneData?.createAt
       }
     }
